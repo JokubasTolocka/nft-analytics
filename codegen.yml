@@ -1,0 +1,41 @@
+schema: http://127.0.0.1:3001/graphql
+overwrite: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+    - eslint --fix
+config:
+  avoidOptionals: false
+  nonOptionalTypename: true
+  maybeValue: T | null
+  scalars:
+    ObjectId: string
+    UUID: string
+    String: string
+generates:
+  src/graphql/generated/types.tsx:
+    documents: 'src/graphql/**/**.graphql'
+    plugins:
+      - typescript
+  src/graphql/generated/operationsTypes.tsx:
+    documents: 'src/graphql/**/**.graphql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./types
+    plugins:
+      - typescript-operations
+  src/graphql/generated/hooks.tsx:
+    documents: 'src/graphql/**/**.graphql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./operationsTypes
+    plugins:
+      - typescript-react-apollo
+    config:
+      withHooks: true
+  src/graphql/generated/possibleTypes.ts:
+    plugins:
+      - fragment-matcher
+  src/graphql/generated/typePolicies.ts:
+    plugins:
+      - typescript-apollo-client-helpers
