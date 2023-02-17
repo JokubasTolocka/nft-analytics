@@ -12,42 +12,41 @@ export type Scalars = {
   Float: number;
 };
 
-export type CreateUserInput = {
-  /** email of the user */
-  email: Scalars['String'];
+export type AuthenticateInput = {
+  /** signature of the wallet of the user */
+  signature: Scalars['String'];
   /** walletAddress of the user */
   walletAddress: Scalars['String'];
 };
 
 export type Mutation = {
   __typename: 'Mutation';
-  createUser: User;
-  removeUser: User;
+  authenticate: Scalars['String'];
+  checkIfUserExists: User;
 };
 
-export type MutationCreateUserArgs = {
-  createUserInput: CreateUserInput;
+export type MutationAuthenticateArgs = {
+  authenticateInput: AuthenticateInput;
 };
 
-export type MutationRemoveUserArgs = {
-  _id: Scalars['String'];
+export type MutationCheckIfUserExistsArgs = {
+  walletAddress: Scalars['String'];
 };
 
 export type Query = {
   __typename: 'Query';
-  user: User;
-  users: Array<User>;
-};
-
-export type QueryUserArgs = {
-  _id: Scalars['String'];
+  myUser: User;
 };
 
 export type User = {
   __typename: 'User';
-  _id: Scalars['String'];
   /** User email  */
-  email: Scalars['String'];
-  /** User walletAddress */
+  email?: Maybe<Scalars['String']>;
+  /** User favorited collections */
+  favoritedCollections: Array<Scalars['String']>;
+  id: Scalars['String'];
+  /** User wallet nonce  */
+  nonce: Scalars['String'];
+  /** User walletAddress  */
   walletAddress: Scalars['String'];
 };

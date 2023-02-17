@@ -1,7 +1,19 @@
-query users {
-  users {
-    _id
+mutation authenticate($authenticateInput: AuthenticateInput!) {
+  authenticate(authenticateInput: $authenticateInput)
+}
+
+mutation checkIfUserExists($walletAddress: String!) {
+  checkIfUserExists(walletAddress: $walletAddress) {
+    walletAddress
+    nonce
+  }
+}
+
+query myUser {
+  myUser {
+    id
     walletAddress
     email
+    favoritedCollections
   }
 }

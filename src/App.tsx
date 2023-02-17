@@ -1,10 +1,17 @@
-import { useUsersQuery } from './graphql/generated/hooks';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Error from './pages/Error';
+import Main from './pages/Main';
 
-function App() {
-  const { data } = useUsersQuery();
+const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Main />,
+      errorElement: <Error />
+    }
+  ]);
 
-  console.log(data);
-  return <div></div>;
-}
+  return <RouterProvider router={router} />;
+};
 
 export default App;

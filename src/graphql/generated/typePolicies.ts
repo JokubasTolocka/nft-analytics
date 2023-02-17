@@ -1,18 +1,26 @@
 import { FieldPolicy, FieldReadFunction, TypePolicies, TypePolicy } from '@apollo/client/cache';
-export type MutationKeySpecifier = ('createUser' | 'removeUser' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('authenticate' | 'checkIfUserExists' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
-  createUser?: FieldPolicy<any> | FieldReadFunction<any>;
-  removeUser?: FieldPolicy<any> | FieldReadFunction<any>;
+  authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
+  checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type QueryKeySpecifier = ('user' | 'users' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('myUser' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
-  user?: FieldPolicy<any> | FieldReadFunction<any>;
-  users?: FieldPolicy<any> | FieldReadFunction<any>;
+  myUser?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type UserKeySpecifier = ('_id' | 'email' | 'walletAddress' | UserKeySpecifier)[];
+export type UserKeySpecifier = (
+  | 'email'
+  | 'favoritedCollections'
+  | 'id'
+  | 'nonce'
+  | 'walletAddress'
+  | UserKeySpecifier
+)[];
 export type UserFieldPolicy = {
-  _id?: FieldPolicy<any> | FieldReadFunction<any>;
   email?: FieldPolicy<any> | FieldReadFunction<any>;
+  favoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
+  nonce?: FieldPolicy<any> | FieldReadFunction<any>;
   walletAddress?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type StrictTypedTypePolicies = {
