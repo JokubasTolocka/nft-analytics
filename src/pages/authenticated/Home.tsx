@@ -1,15 +1,9 @@
-import { useAuth } from '../../contexts/Auth/useAuth';
-import useLogout from '../../hooks/useLogout';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Home = () => {
-  const handleDisconnect = useLogout();
-  const { myUser } = useAuth();
-
   return (
-    <div className="flex flex-col">
-      <span>Authenticated!</span>
-      <span>{myUser?.walletAddress}</span>
-      <button onClick={handleDisconnect}>Disconnect</button>
+    <div className="flex flex-col border-t border-dark-40 h-full">
+      <Sidebar />
     </div>
   );
 };

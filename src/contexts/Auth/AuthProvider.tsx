@@ -21,13 +21,15 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const { loading } = useMyUserQuery({
     skip: !isLoggedIn,
     onCompleted: ({ myUser }) => setMyUser(myUser as User),
-    onError: () => {
-      handleDisconnect();
-    }
+    onError: () => handleDisconnect
   });
 
   if (loading) {
-    return <div className="flex h-full w-full items-center justify-center">Authenticating...</div>;
+    return (
+      <div className="flex bg-dark-100 h-full w-full items-center justify-center">
+        <div className="border border-dark-40 text-white rounded-[20px] py-10 px-8">Authenticating...</div>
+      </div>
+    );
   }
 
   return <AuthContext.Provider value={{ myUser }}>{children}</AuthContext.Provider>;
