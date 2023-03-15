@@ -4,6 +4,59 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
+export const GetCollectionDocument = gql`
+  query getCollection($collectionSlug: String!) {
+    getCollection(collectionSlug: $collectionSlug) {
+      name
+      address
+      description
+      image
+      bannerImage
+      floorPrice
+      volume
+      supply
+      assets {
+        name
+        image
+      }
+    }
+  }
+`;
+
+/**
+ * __useGetCollectionQuery__
+ *
+ * To run a query within a React component, call `useGetCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCollectionQuery({
+ *   variables: {
+ *      collectionSlug: // value for 'collectionSlug'
+ *   },
+ * });
+ */
+export function useGetCollectionQuery(
+  baseOptions: Apollo.QueryHookOptions<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>(GetCollectionDocument, options);
+}
+export function useGetCollectionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>(
+    GetCollectionDocument,
+    options
+  );
+}
+export type GetCollectionQueryHookResult = ReturnType<typeof useGetCollectionQuery>;
+export type GetCollectionLazyQueryHookResult = ReturnType<typeof useGetCollectionLazyQuery>;
+export type GetCollectionQueryResult = Apollo.QueryResult<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>;
 export const AuthenticateDocument = gql`
   mutation authenticate($authenticateInput: AuthenticateInput!) {
     authenticate(authenticateInput: $authenticateInput)

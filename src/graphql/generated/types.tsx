@@ -12,11 +12,41 @@ export type Scalars = {
   Float: number;
 };
 
+export type Asset = {
+  __typename: 'Asset';
+  /** Asset image */
+  image: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type AuthenticateInput = {
   /** signature of the wallet of the user */
   signature: Scalars['String'];
   /** walletAddress of the user */
   walletAddress: Scalars['String'];
+};
+
+export type Collection = {
+  __typename: 'Collection';
+  /** Collection address */
+  address: Scalars['String'];
+  /** Collection assets */
+  assets: Array<Asset>;
+  /** Collection banner */
+  bannerImage: Scalars['String'];
+  /** Collection description */
+  description: Scalars['String'];
+  /** Collection floor price */
+  floorPrice: Scalars['Float'];
+  id: Scalars['String'];
+  /** Collection image  */
+  image: Scalars['String'];
+  /** Collection name */
+  name: Scalars['String'];
+  /** Collection supply */
+  supply: Scalars['Float'];
+  /** Collection volume */
+  volume: Scalars['Float'];
 };
 
 export type Mutation = {
@@ -35,7 +65,12 @@ export type MutationCheckIfUserExistsArgs = {
 
 export type Query = {
   __typename: 'Query';
+  getCollection: Collection;
   myUser: User;
+};
+
+export type QueryGetCollectionArgs = {
+  collectionSlug: Scalars['String'];
 };
 
 export type User = {

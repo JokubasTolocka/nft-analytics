@@ -1,10 +1,10 @@
-import { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cx from 'classnames';
 
 interface SidebarLinkProps {
   to?: string;
-  icon: string;
+  icon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;
   className?: string;
   isButton?: boolean;
   onClick?: () => void;
@@ -13,7 +13,7 @@ interface SidebarLinkProps {
 const SidebarLink = ({
   children,
   to = '/missing',
-  icon,
+  icon: Icon,
   className,
   isButton = false,
   onClick
@@ -24,14 +24,14 @@ const SidebarLink = ({
 
   const componentClass = cx(
     'rounded-[16px] px-4 py-3 flex items-center justify-start text-white hover:bg-dark-90 w-full',
-    isCurrentRoute && 'bg-white text-dark-100 hover:!bg-dark-20',
+    isCurrentRoute && 'bg-white text-dark-100 stroke-dark-100 hover:!bg-dark-20',
     className
   );
 
   if (isButton) {
     return (
       <button className={componentClass} onClick={onClick}>
-        <img src={icon} alt="icon" className="mr-3" />
+        <Icon className="mr-3" />
         {children}
       </button>
     );
@@ -39,7 +39,7 @@ const SidebarLink = ({
 
   return (
     <Link to={to} className={componentClass}>
-      <img src={icon} alt="icon" className="mr-3" />
+      <Icon className={cx('mr-3 text-white', isCurrentRoute && 'text-dark-100')} />
       {children}
     </Link>
   );

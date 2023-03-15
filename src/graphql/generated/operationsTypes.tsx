@@ -1,5 +1,25 @@
 import * as Types from './types';
 
+export type GetCollectionQueryVariables = Types.Exact<{
+  collectionSlug: Types.Scalars['String'];
+}>;
+
+export type GetCollectionQuery = {
+  __typename: 'Query';
+  getCollection: {
+    __typename: 'Collection';
+    name: string;
+    address: string;
+    description: string;
+    image: string;
+    bannerImage: string;
+    floorPrice: number;
+    volume: number;
+    supply: number;
+    assets: Array<{ __typename: 'Asset'; name: string; image: string }>;
+  };
+};
+
 export type AuthenticateMutationVariables = Types.Exact<{
   authenticateInput: Types.AuthenticateInput;
 }>;

@@ -1,0 +1,16 @@
+query getCollection($collectionSlug: String!) {
+  getCollection(collectionSlug: $collectionSlug) {
+    name
+    address
+    description
+    image
+    bannerImage
+    floorPrice
+    volume
+    supply
+    assets {
+      name
+      image
+    }
+  }
+}

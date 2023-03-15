@@ -1,9 +1,9 @@
 import { useAuth } from '../../contexts/Auth/useAuth';
 import SidebarLink from './SidebarLink';
-import Home from '../../assets/icons/Home.svg';
-import Star from '../../assets/icons/Star.svg';
-import User from '../../assets/icons/User.svg';
-import ExitDoor from '../../assets/icons/ExitDoor.svg';
+import { ReactComponent as Home } from '../../assets/icons/Home.svg';
+import { ReactComponent as Star } from '../../assets/icons/Star.svg';
+import { ReactComponent as User } from '../../assets/icons/User.svg';
+import { ReactComponent as ExitDoor } from '../../assets/icons/ExitDoor.svg';
 import useLogout from '../../hooks/useLogout';
 
 const Sidebar = () => {

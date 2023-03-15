@@ -5,6 +5,7 @@ import App from './App';
 import './index.css';
 import WagmiClient from './utils/wagmiClient';
 import { AuthProvider } from './contexts/Auth/AuthProvider';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const link = createHttpLink({
   uri: 'http://127.0.0.1:3001/graphql',
@@ -20,9 +21,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <WagmiClient>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <Router>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </Router>
       </WagmiClient>
     </ApolloProvider>
   </React.StrictMode>
