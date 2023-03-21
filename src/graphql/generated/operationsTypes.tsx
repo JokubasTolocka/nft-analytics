@@ -20,6 +20,21 @@ export type GetCollectionQuery = {
   };
 };
 
+export type SearchCollectionsQueryVariables = Types.Exact<{
+  searchSlug: Types.Scalars['String'];
+}>;
+
+export type SearchCollectionsQuery = {
+  __typename: 'Query';
+  searchCollections: Array<{
+    __typename: 'ShortCollection';
+    name: string;
+    address: string;
+    slug: string;
+    image: string;
+  }>;
+};
+
 export type AuthenticateMutationVariables = Types.Exact<{
   authenticateInput: Types.AuthenticateInput;
 }>;

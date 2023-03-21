@@ -14,3 +14,12 @@ query getCollection($collectionSlug: String!) {
     }
   }
 }
+
+query searchCollections($searchSlug: String!) {
+  searchCollections(searchSlug: $searchSlug) {
+    name
+    address
+    slug
+    image
+  }
+}

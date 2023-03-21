@@ -34,10 +34,26 @@ export type MutationFieldPolicy = {
   authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type QueryKeySpecifier = ('getCollection' | 'myUser' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('getCollection' | 'myUser' | 'searchCollections' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
   getCollection?: FieldPolicy<any> | FieldReadFunction<any>;
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;
+  searchCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+};
+export type ShortCollectionKeySpecifier = (
+  | 'address'
+  | 'id'
+  | 'image'
+  | 'name'
+  | 'slug'
+  | ShortCollectionKeySpecifier
+)[];
+export type ShortCollectionFieldPolicy = {
+  address?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
+  image?: FieldPolicy<any> | FieldReadFunction<any>;
+  name?: FieldPolicy<any> | FieldReadFunction<any>;
+  slug?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type UserKeySpecifier = (
   | 'email'
@@ -70,6 +86,10 @@ export type StrictTypedTypePolicies = {
   Query?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | QueryKeySpecifier | (() => undefined | QueryKeySpecifier);
     fields?: QueryFieldPolicy;
+  };
+  ShortCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
+    keyFields?: false | ShortCollectionKeySpecifier | (() => undefined | ShortCollectionKeySpecifier);
+    fields?: ShortCollectionFieldPolicy;
   };
   User?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier);

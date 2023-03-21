@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { useAuth } from './contexts/Auth/useAuth';
 import Collection from './pages/authenticated/Collection/Collection';
 import Home from './pages/authenticated/Home';
+import SearchPage from './pages/authenticated/SearchPage/SearchPage';
 import Login from './pages/Login/Login';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="collection/:collectionSlug" element={<Collection />} />
+          <Route path="search/:searchSlug" element={<SearchPage />} />
         </Routes>
       </div>
     </div>

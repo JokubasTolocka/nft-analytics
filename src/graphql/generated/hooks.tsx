@@ -57,6 +57,57 @@ export function useGetCollectionLazyQuery(
 export type GetCollectionQueryHookResult = ReturnType<typeof useGetCollectionQuery>;
 export type GetCollectionLazyQueryHookResult = ReturnType<typeof useGetCollectionLazyQuery>;
 export type GetCollectionQueryResult = Apollo.QueryResult<Types.GetCollectionQuery, Types.GetCollectionQueryVariables>;
+export const SearchCollectionsDocument = gql`
+  query searchCollections($searchSlug: String!) {
+    searchCollections(searchSlug: $searchSlug) {
+      name
+      address
+      slug
+      image
+    }
+  }
+`;
+
+/**
+ * __useSearchCollectionsQuery__
+ *
+ * To run a query within a React component, call `useSearchCollectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchCollectionsQuery({
+ *   variables: {
+ *      searchSlug: // value for 'searchSlug'
+ *   },
+ * });
+ */
+export function useSearchCollectionsQuery(
+  baseOptions: Apollo.QueryHookOptions<Types.SearchCollectionsQuery, Types.SearchCollectionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<Types.SearchCollectionsQuery, Types.SearchCollectionsQueryVariables>(
+    SearchCollectionsDocument,
+    options
+  );
+}
+export function useSearchCollectionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<Types.SearchCollectionsQuery, Types.SearchCollectionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<Types.SearchCollectionsQuery, Types.SearchCollectionsQueryVariables>(
+    SearchCollectionsDocument,
+    options
+  );
+}
+export type SearchCollectionsQueryHookResult = ReturnType<typeof useSearchCollectionsQuery>;
+export type SearchCollectionsLazyQueryHookResult = ReturnType<typeof useSearchCollectionsLazyQuery>;
+export type SearchCollectionsQueryResult = Apollo.QueryResult<
+  Types.SearchCollectionsQuery,
+  Types.SearchCollectionsQueryVariables
+>;
 export const AuthenticateDocument = gql`
   mutation authenticate($authenticateInput: AuthenticateInput!) {
     authenticate(authenticateInput: $authenticateInput)

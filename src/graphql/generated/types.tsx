@@ -67,10 +67,28 @@ export type Query = {
   __typename: 'Query';
   getCollection: Collection;
   myUser: User;
+  searchCollections: Array<ShortCollection>;
 };
 
 export type QueryGetCollectionArgs = {
   collectionSlug: Scalars['String'];
+};
+
+export type QuerySearchCollectionsArgs = {
+  searchSlug: Scalars['String'];
+};
+
+export type ShortCollection = {
+  __typename: 'ShortCollection';
+  /** Collection address */
+  address: Scalars['String'];
+  id: Scalars['String'];
+  /** Collection image  */
+  image: Scalars['String'];
+  /** Collection name */
+  name: Scalars['String'];
+  /** Collection slug */
+  slug: Scalars['String'];
 };
 
 export type User = {
