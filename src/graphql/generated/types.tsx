@@ -14,6 +14,8 @@ export type Scalars = {
 
 export type Asset = {
   __typename: 'Asset';
+  collectionName?: Maybe<Scalars['String']>;
+  collectionSlug?: Maybe<Scalars['String']>;
   /** Asset image */
   image: Scalars['String'];
   name: Scalars['String'];
@@ -40,7 +42,7 @@ export type Collection = {
   floorPrice: Scalars['Float'];
   id: Scalars['String'];
   /** Collection image  */
-  image: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
   /** Collection name */
   name: Scalars['String'];
   /** Collection supply */
@@ -66,6 +68,7 @@ export type MutationCheckIfUserExistsArgs = {
 export type Query = {
   __typename: 'Query';
   getCollection: Collection;
+  getMyAssets: Array<Asset>;
   myUser: User;
   searchCollections: Array<ShortCollection>;
 };
@@ -84,7 +87,7 @@ export type ShortCollection = {
   address: Scalars['String'];
   id: Scalars['String'];
   /** Collection image  */
-  image: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
   /** Collection name */
   name: Scalars['String'];
   /** Collection slug */

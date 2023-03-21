@@ -17,3 +17,12 @@ query myUser {
     favoritedCollections
   }
 }
+
+query getMyAssets {
+  getMyAssets {
+    name
+    image
+    collectionSlug
+    collectionName
+  }
+}

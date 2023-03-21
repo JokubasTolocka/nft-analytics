@@ -11,7 +11,7 @@ export type GetCollectionQuery = {
     name: string;
     address: string;
     description: string;
-    image: string;
+    image?: string | null;
     bannerImage: string;
     floorPrice: number;
     volume: number;
@@ -31,7 +31,7 @@ export type SearchCollectionsQuery = {
     name: string;
     address: string;
     slug: string;
-    image: string;
+    image?: string | null;
   }>;
 };
 
@@ -61,4 +61,17 @@ export type MyUserQuery = {
     email?: string | null;
     favoritedCollections: Array<string>;
   };
+};
+
+export type GetMyAssetsQueryVariables = Types.Exact<{ [key: string]: never }>;
+
+export type GetMyAssetsQuery = {
+  __typename: 'Query';
+  getMyAssets: Array<{
+    __typename: 'Asset';
+    name: string;
+    image: string;
+    collectionSlug?: string | null;
+    collectionName?: string | null;
+  }>;
 };

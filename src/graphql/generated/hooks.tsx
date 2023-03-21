@@ -234,3 +234,44 @@ export function useMyUserLazyQuery(
 export type MyUserQueryHookResult = ReturnType<typeof useMyUserQuery>;
 export type MyUserLazyQueryHookResult = ReturnType<typeof useMyUserLazyQuery>;
 export type MyUserQueryResult = Apollo.QueryResult<Types.MyUserQuery, Types.MyUserQueryVariables>;
+export const GetMyAssetsDocument = gql`
+  query getMyAssets {
+    getMyAssets {
+      name
+      image
+      collectionSlug
+      collectionName
+    }
+  }
+`;
+
+/**
+ * __useGetMyAssetsQuery__
+ *
+ * To run a query within a React component, call `useGetMyAssetsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMyAssetsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMyAssetsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMyAssetsQuery(
+  baseOptions?: Apollo.QueryHookOptions<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>(GetMyAssetsDocument, options);
+}
+export function useGetMyAssetsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>(GetMyAssetsDocument, options);
+}
+export type GetMyAssetsQueryHookResult = ReturnType<typeof useGetMyAssetsQuery>;
+export type GetMyAssetsLazyQueryHookResult = ReturnType<typeof useGetMyAssetsLazyQuery>;
+export type GetMyAssetsQueryResult = Apollo.QueryResult<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>;

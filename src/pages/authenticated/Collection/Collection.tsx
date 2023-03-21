@@ -5,6 +5,8 @@ import { useGetCollectionQuery } from '../../../graphql/generated/hooks';
 import { ReactComponent as Star } from '../../../assets/icons/Star.svg';
 import DescriptionBox from './DescriptionBox';
 import ErrorMessage from '../../../components/ErrorMessage';
+import AssetGrid from '../../../components/TokenGrid';
+import TextDivider from '../../../components/TextDivider';
 
 interface StatsBoxProps {
   stat: string;
@@ -33,7 +35,7 @@ const Collection = () => {
       <img alt="bannerImg" src={collection.bannerImage} className="h-[220px] object-cover" />
       <img
         alt="mainImage"
-        src={collection.image}
+        src={collection.image || ''}
         className="w-[180px] h-[180px] border-8 border-dark-100 rounded-[14px] absolute left-16 top-[72px]"
       />
       <div className="mt-12 mx-16 flex justify-between mb-8">
@@ -52,18 +54,8 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col space-y-[14px] mx-16">
-        <span className="text-2xl text-dark-40">Items</span>
-        <div className="w-full h-px bg-dark-40" />
-      </div>
-      <div className="grid xl:grid-cols-5 grid-cols-3 mt-6 mx-16 gap-x-6 gap-y-12 mb-16">
-        {collection.assets.map(({ name, image }) => (
-          <div key={name} className="flex flex-col">
-            <img src={image} alt={name} className="rounded-2xl" />
-            <span className="ml-3 !mt-4 font-medium text-lg">{name}</span>
-          </div>
-        ))}
-      </div>
+      <TextDivider title="Items" className="mx-16" />
+      <AssetGrid assets={collection.assets} className="mx-16" />
     </div>
   );
 };

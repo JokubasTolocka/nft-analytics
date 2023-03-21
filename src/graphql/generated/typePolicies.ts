@@ -1,6 +1,8 @@
 import { FieldPolicy, FieldReadFunction, TypePolicies, TypePolicy } from '@apollo/client/cache';
-export type AssetKeySpecifier = ('image' | 'name' | AssetKeySpecifier)[];
+export type AssetKeySpecifier = ('collectionName' | 'collectionSlug' | 'image' | 'name' | AssetKeySpecifier)[];
 export type AssetFieldPolicy = {
+  collectionName?: FieldPolicy<any> | FieldReadFunction<any>;
+  collectionSlug?: FieldPolicy<any> | FieldReadFunction<any>;
   image?: FieldPolicy<any> | FieldReadFunction<any>;
   name?: FieldPolicy<any> | FieldReadFunction<any>;
 };
@@ -34,9 +36,16 @@ export type MutationFieldPolicy = {
   authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type QueryKeySpecifier = ('getCollection' | 'myUser' | 'searchCollections' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = (
+  | 'getCollection'
+  | 'getMyAssets'
+  | 'myUser'
+  | 'searchCollections'
+  | QueryKeySpecifier
+)[];
 export type QueryFieldPolicy = {
   getCollection?: FieldPolicy<any> | FieldReadFunction<any>;
+  getMyAssets?: FieldPolicy<any> | FieldReadFunction<any>;
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;
   searchCollections?: FieldPolicy<any> | FieldReadFunction<any>;
 };

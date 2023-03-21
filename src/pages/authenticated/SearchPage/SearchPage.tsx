@@ -21,7 +21,7 @@ const SearchPage = () => {
           to={`/collection/${collection.slug}`}
           key={collection.name}
           className="p-3 flex space-x-4 text-white bg-dark-90 rounded-2xl w-full h-fit">
-          <img src={collection.image} alt={collection.name} className="rounded-lg h-16 w-16" />
+          <img src={collection.image || ''} alt={collection.name} className="rounded-lg h-16 w-16" />
           <span className="text-lg font-medium h-fit">{collection.name}</span>
         </Link>
       ))}
