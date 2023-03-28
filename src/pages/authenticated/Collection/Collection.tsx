@@ -36,20 +36,22 @@ const Collection = () => {
       <img
         alt="mainImage"
         src={collection.image || ''}
-        className="w-[180px] h-[180px] border-8 border-dark-100 rounded-[14px] absolute left-16 top-[72px]"
+        className="w-[180px] h-[180px] border-8 border-dark-100 rounded-[14px] absolute left-16 top-4 md:top-[72px]"
       />
       <div className="mt-12 mx-16 flex justify-between mb-8">
         <div className="flex flex-col">
           <span className="mb-4 text-[40px]">{collection.name}</span>
-          <DescriptionBox description={collection.description} />
+          {!!collection.description && <DescriptionBox description={collection.description} />}
         </div>
         <div className="flex flex-col items-end justify-between">
-          <Button onClick={() => console.log('favorite')}>
-            <Star /> <span>Favorite</span>
-          </Button>
+          {!!collection.address && (
+            <Button className="mb-4" onClick={() => console.log('favorite')}>
+              <Star /> <span>Favorite</span>
+            </Button>
+          )}
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
-            <StatsBox stat={`${collection.floorPrice} ETH`} statName="Floor price" />
+            <StatsBox stat={`${collection.floorPrice || 0} ETH`} statName="Floor price" />
             <StatsBox stat={`${Math.floor(collection.volume)} ETH`} statName="Total volume" />
           </div>
         </div>
