@@ -11,7 +11,7 @@ mutation checkIfUserExists($walletAddress: String!) {
 
 query myUser {
   myUser {
-    id
+    _id
     walletAddress
     email
     favoritedCollections

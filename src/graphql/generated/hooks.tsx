@@ -198,7 +198,7 @@ export type CheckIfUserExistsMutationOptions = Apollo.BaseMutationOptions<
 export const MyUserDocument = gql`
   query myUser {
     myUser {
-      id
+      _id
       walletAddress
       email
       favoritedCollections

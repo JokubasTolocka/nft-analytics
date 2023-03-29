@@ -31,16 +31,15 @@ export type AuthenticateInput = {
 export type Collection = {
   __typename: 'Collection';
   /** Collection address */
-  address: Scalars['String'];
+  address?: Maybe<Scalars['String']>;
   /** Collection assets */
   assets: Array<Asset>;
   /** Collection banner */
-  bannerImage: Scalars['String'];
+  bannerImage?: Maybe<Scalars['String']>;
   /** Collection description */
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   /** Collection floor price */
-  floorPrice: Scalars['Float'];
-  id: Scalars['String'];
+  floorPrice?: Maybe<Scalars['Float']>;
   /** Collection image  */
   image?: Maybe<Scalars['String']>;
   /** Collection name */
@@ -48,7 +47,7 @@ export type Collection = {
   /** Collection supply */
   supply: Scalars['Float'];
   /** Collection volume */
-  volume: Scalars['Float'];
+  volume?: Maybe<Scalars['Float']>;
 };
 
 export type Mutation = {
@@ -85,7 +84,6 @@ export type ShortCollection = {
   __typename: 'ShortCollection';
   /** Collection address */
   address: Scalars['String'];
-  id: Scalars['String'];
   /** Collection image  */
   image?: Maybe<Scalars['String']>;
   /** Collection name */
@@ -96,13 +94,9 @@ export type ShortCollection = {
 
 export type User = {
   __typename: 'User';
-  /** User email  */
+  _id: Scalars['ID'];
   email?: Maybe<Scalars['String']>;
-  /** User favorited collections */
   favoritedCollections: Array<Scalars['String']>;
-  id: Scalars['String'];
-  /** User wallet nonce  */
   nonce: Scalars['String'];
-  /** User walletAddress  */
   walletAddress: Scalars['String'];
 };

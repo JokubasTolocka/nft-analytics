@@ -32,7 +32,7 @@ const Collection = () => {
 
   return (
     <div className="w-full flex flex-col relative h-full text-white overflow-y-scroll">
-      <img alt="bannerImg" src={collection.bannerImage} className="h-[220px] object-cover" />
+      <img alt="bannerImg" src={collection.bannerImage || ''} className="h-[220px] object-cover" />
       <img
         alt="mainImage"
         src={collection.image || ''}
@@ -52,7 +52,7 @@ const Collection = () => {
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
             <StatsBox stat={`${collection.floorPrice || 0} ETH`} statName="Floor price" />
-            <StatsBox stat={`${Math.floor(collection.volume)} ETH`} statName="Total volume" />
+            <StatsBox stat={`${collection.volume ? Math.floor(collection.volume) : 0} ETH`} statName="Total volume" />
           </div>
         </div>
       </div>
