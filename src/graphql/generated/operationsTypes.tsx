@@ -10,7 +10,7 @@ export type GetCollectionQuery = {
     __typename: 'Collection';
     name: string;
     address?: string | null;
-    description?: string | null;
+    description: string;
     image?: string | null;
     bannerImage?: string | null;
     floorPrice?: number | null;
@@ -56,10 +56,10 @@ export type MyUserQuery = {
   __typename: 'Query';
   myUser: {
     __typename: 'User';
-    _id: string;
+    id: string;
     walletAddress: string;
     email?: string | null;
-    favoritedCollections: Array<string>;
+    favoritedCollections: Array<{ __typename: 'FavoriteCollection'; id: string }>;
   };
 };
 

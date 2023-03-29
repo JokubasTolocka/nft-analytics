@@ -11,10 +11,12 @@ mutation checkIfUserExists($walletAddress: String!) {
 
 query myUser {
   myUser {
-    _id
+    id
     walletAddress
     email
-    favoritedCollections
+    favoritedCollections {
+      id
+    }
   }
 }
 

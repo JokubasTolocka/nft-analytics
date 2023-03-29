@@ -37,9 +37,10 @@ export type Collection = {
   /** Collection banner */
   bannerImage?: Maybe<Scalars['String']>;
   /** Collection description */
-  description?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
   /** Collection floor price */
   floorPrice?: Maybe<Scalars['Float']>;
+  id: Scalars['String'];
   /** Collection image  */
   image?: Maybe<Scalars['String']>;
   /** Collection name */
@@ -48,6 +49,16 @@ export type Collection = {
   supply: Scalars['Float'];
   /** Collection volume */
   volume?: Maybe<Scalars['Float']>;
+};
+
+export type FavoriteCollection = {
+  __typename: 'FavoriteCollection';
+  /** Collection address */
+  address?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  pastFloorPriceArray: Array<Scalars['String']>;
+  pastVolumeArray: Array<Scalars['String']>;
+  users: Array<User>;
 };
 
 export type Mutation = {
@@ -84,6 +95,7 @@ export type ShortCollection = {
   __typename: 'ShortCollection';
   /** Collection address */
   address: Scalars['String'];
+  id: Scalars['String'];
   /** Collection image  */
   image?: Maybe<Scalars['String']>;
   /** Collection name */
@@ -94,9 +106,13 @@ export type ShortCollection = {
 
 export type User = {
   __typename: 'User';
-  _id: Scalars['ID'];
+  /** User email  */
   email?: Maybe<Scalars['String']>;
-  favoritedCollections: Array<Scalars['String']>;
+  /** User favorited collections */
+  favoritedCollections: Array<FavoriteCollection>;
+  id: Scalars['String'];
+  /** User wallet nonce  */
   nonce: Scalars['String'];
+  /** User walletAddress  */
   walletAddress: Scalars['String'];
 };

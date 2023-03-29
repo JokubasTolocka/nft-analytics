@@ -12,6 +12,7 @@ export type CollectionKeySpecifier = (
   | 'bannerImage'
   | 'description'
   | 'floorPrice'
+  | 'id'
   | 'image'
   | 'name'
   | 'supply'
@@ -24,10 +25,26 @@ export type CollectionFieldPolicy = {
   bannerImage?: FieldPolicy<any> | FieldReadFunction<any>;
   description?: FieldPolicy<any> | FieldReadFunction<any>;
   floorPrice?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
   image?: FieldPolicy<any> | FieldReadFunction<any>;
   name?: FieldPolicy<any> | FieldReadFunction<any>;
   supply?: FieldPolicy<any> | FieldReadFunction<any>;
   volume?: FieldPolicy<any> | FieldReadFunction<any>;
+};
+export type FavoriteCollectionKeySpecifier = (
+  | 'address'
+  | 'id'
+  | 'pastFloorPriceArray'
+  | 'pastVolumeArray'
+  | 'users'
+  | FavoriteCollectionKeySpecifier
+)[];
+export type FavoriteCollectionFieldPolicy = {
+  address?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
+  pastFloorPriceArray?: FieldPolicy<any> | FieldReadFunction<any>;
+  pastVolumeArray?: FieldPolicy<any> | FieldReadFunction<any>;
+  users?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type MutationKeySpecifier = ('authenticate' | 'checkIfUserExists' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
@@ -47,25 +64,33 @@ export type QueryFieldPolicy = {
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;
   searchCollections?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type ShortCollectionKeySpecifier = ('address' | 'image' | 'name' | 'slug' | ShortCollectionKeySpecifier)[];
+export type ShortCollectionKeySpecifier = (
+  | 'address'
+  | 'id'
+  | 'image'
+  | 'name'
+  | 'slug'
+  | ShortCollectionKeySpecifier
+)[];
 export type ShortCollectionFieldPolicy = {
   address?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
   image?: FieldPolicy<any> | FieldReadFunction<any>;
   name?: FieldPolicy<any> | FieldReadFunction<any>;
   slug?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type UserKeySpecifier = (
-  | '_id'
   | 'email'
   | 'favoritedCollections'
+  | 'id'
   | 'nonce'
   | 'walletAddress'
   | UserKeySpecifier
 )[];
 export type UserFieldPolicy = {
-  _id?: FieldPolicy<any> | FieldReadFunction<any>;
   email?: FieldPolicy<any> | FieldReadFunction<any>;
   favoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+  id?: FieldPolicy<any> | FieldReadFunction<any>;
   nonce?: FieldPolicy<any> | FieldReadFunction<any>;
   walletAddress?: FieldPolicy<any> | FieldReadFunction<any>;
 };
@@ -77,6 +102,10 @@ export type StrictTypedTypePolicies = {
   Collection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | CollectionKeySpecifier | (() => undefined | CollectionKeySpecifier);
     fields?: CollectionFieldPolicy;
+  };
+  FavoriteCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
+    keyFields?: false | FavoriteCollectionKeySpecifier | (() => undefined | FavoriteCollectionKeySpecifier);
+    fields?: FavoriteCollectionFieldPolicy;
   };
   Mutation?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier);
