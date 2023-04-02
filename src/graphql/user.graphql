@@ -14,9 +14,7 @@ query myUser {
     id
     walletAddress
     email
-    favoritedCollections {
-      id
-    }
+    favoritedCollections
   }
 }
 

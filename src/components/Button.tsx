@@ -23,7 +23,8 @@ const Button = ({
 }: PropsWithChildren<ButtonProps>) => (
   <button
     className={cx('flex space-x-2 items-center rounded-2xl py-3 px-6 text-lg', buttonVariants[variant], className)}
-    onClick={() => !isActionLoading && onClick()}>
+    onClick={() => !isActionLoading && onClick()}
+    disabled={isActionLoading}>
     {!isActionLoading ? children : 'Loading...'}
   </button>
 );

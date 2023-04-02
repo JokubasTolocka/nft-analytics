@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Loading from '../../../components/Loading/Loading';
-import { useGetCollectionQuery } from '../../../graphql/generated/hooks';
+import { useGetCollectionQuery, useMarkCollectionAsFavoriteMutation } from '../../../graphql/generated/hooks';
 import { ReactComponent as Star } from '../../../assets/icons/Star.svg';
 import DescriptionBox from './DescriptionBox';
 import ErrorMessage from '../../../components/ErrorMessage';
@@ -25,10 +25,22 @@ const Collection = () => {
 
   const { data, loading, error } = useGetCollectionQuery({ variables: { collectionSlug: collectionSlug || '' } });
 
+  const [markCollectionAsFavorite, { data: mutationData, loading: mutationLoading }] =
+    useMarkCollectionAsFavoriteMutation();
+
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
 
   const { getCollection: collection } = data;
+
+  console.log(mutationData);
+
+  const onFavorite = () =>
+    markCollectionAsFavorite({
+      variables: {
+        markCollectionAsFavoriteData: { address: collection.address || '', collectionSlug: collectionSlug || '' }
+      }
+    });
 
   return (
     <div className="w-full flex flex-col relative h-full text-white overflow-y-scroll">
@@ -45,7 +57,7 @@ const Collection = () => {
         </div>
         <div className="flex flex-col items-end justify-between">
           {!!collection.address && (
-            <Button className="mb-4" onClick={() => console.log('favorite')}>
+            <Button className="mb-4" onClick={onFavorite} isActionLoading={mutationLoading}>
               <Star /> <span>Favorite</span>
             </Button>
           )}

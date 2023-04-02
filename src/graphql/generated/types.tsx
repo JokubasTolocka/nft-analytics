@@ -51,20 +51,18 @@ export type Collection = {
   volume?: Maybe<Scalars['Float']>;
 };
 
-export type FavoriteCollection = {
-  __typename: 'FavoriteCollection';
+export type MarkCollectionAsFavoriteInput = {
   /** Collection address */
-  address?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  pastFloorPriceArray: Array<Scalars['String']>;
-  pastVolumeArray: Array<Scalars['String']>;
-  users: Array<User>;
+  address: Scalars['String'];
+  /** Collection slug */
+  collectionSlug: Scalars['String'];
 };
 
 export type Mutation = {
   __typename: 'Mutation';
   authenticate: Scalars['String'];
   checkIfUserExists: User;
+  markCollectionAsFavorite: Scalars['Boolean'];
 };
 
 export type MutationAuthenticateArgs = {
@@ -73,6 +71,10 @@ export type MutationAuthenticateArgs = {
 
 export type MutationCheckIfUserExistsArgs = {
   walletAddress: Scalars['String'];
+};
+
+export type MutationMarkCollectionAsFavoriteArgs = {
+  markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput;
 };
 
 export type Query = {
@@ -109,7 +111,7 @@ export type User = {
   /** User email  */
   email?: Maybe<Scalars['String']>;
   /** User favorited collections */
-  favoritedCollections: Array<FavoriteCollection>;
+  favoritedCollections: Array<Scalars['String']>;
   id: Scalars['String'];
   /** User wallet nonce  */
   nonce: Scalars['String'];

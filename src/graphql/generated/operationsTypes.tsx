@@ -35,6 +35,12 @@ export type SearchCollectionsQuery = {
   }>;
 };
 
+export type MarkCollectionAsFavoriteMutationVariables = Types.Exact<{
+  markCollectionAsFavoriteData: Types.MarkCollectionAsFavoriteInput;
+}>;
+
+export type MarkCollectionAsFavoriteMutation = { __typename: 'Mutation'; markCollectionAsFavorite: boolean };
+
 export type AuthenticateMutationVariables = Types.Exact<{
   authenticateInput: Types.AuthenticateInput;
 }>;
@@ -59,7 +65,7 @@ export type MyUserQuery = {
     id: string;
     walletAddress: string;
     email?: string | null;
-    favoritedCollections: Array<{ __typename: 'FavoriteCollection'; id: string }>;
+    favoritedCollections: Array<string>;
   };
 };
 

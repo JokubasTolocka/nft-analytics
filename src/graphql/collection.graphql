@@ -23,3 +23,7 @@ query searchCollections($searchSlug: String!) {
     image
   }
 }
+
+mutation markCollectionAsFavorite($markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput!) {
+  markCollectionAsFavorite(markCollectionAsFavoriteData: $markCollectionAsFavoriteData)
+}

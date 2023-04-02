@@ -108,6 +108,51 @@ export type SearchCollectionsQueryResult = Apollo.QueryResult<
   Types.SearchCollectionsQuery,
   Types.SearchCollectionsQueryVariables
 >;
+export const MarkCollectionAsFavoriteDocument = gql`
+  mutation markCollectionAsFavorite($markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput!) {
+    markCollectionAsFavorite(markCollectionAsFavoriteData: $markCollectionAsFavoriteData)
+  }
+`;
+export type MarkCollectionAsFavoriteMutationFn = Apollo.MutationFunction<
+  Types.MarkCollectionAsFavoriteMutation,
+  Types.MarkCollectionAsFavoriteMutationVariables
+>;
+
+/**
+ * __useMarkCollectionAsFavoriteMutation__
+ *
+ * To run a mutation, you first call `useMarkCollectionAsFavoriteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMarkCollectionAsFavoriteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [markCollectionAsFavoriteMutation, { data, loading, error }] = useMarkCollectionAsFavoriteMutation({
+ *   variables: {
+ *      markCollectionAsFavoriteData: // value for 'markCollectionAsFavoriteData'
+ *   },
+ * });
+ */
+export function useMarkCollectionAsFavoriteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Types.MarkCollectionAsFavoriteMutation,
+    Types.MarkCollectionAsFavoriteMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<Types.MarkCollectionAsFavoriteMutation, Types.MarkCollectionAsFavoriteMutationVariables>(
+    MarkCollectionAsFavoriteDocument,
+    options
+  );
+}
+export type MarkCollectionAsFavoriteMutationHookResult = ReturnType<typeof useMarkCollectionAsFavoriteMutation>;
+export type MarkCollectionAsFavoriteMutationResult = Apollo.MutationResult<Types.MarkCollectionAsFavoriteMutation>;
+export type MarkCollectionAsFavoriteMutationOptions = Apollo.BaseMutationOptions<
+  Types.MarkCollectionAsFavoriteMutation,
+  Types.MarkCollectionAsFavoriteMutationVariables
+>;
 export const AuthenticateDocument = gql`
   mutation authenticate($authenticateInput: AuthenticateInput!) {
     authenticate(authenticateInput: $authenticateInput)
@@ -201,9 +246,7 @@ export const MyUserDocument = gql`
       id
       walletAddress
       email
-      favoritedCollections {
-        id
-      }
+      favoritedCollections
     }
   }
 `;

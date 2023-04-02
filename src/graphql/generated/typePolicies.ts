@@ -31,25 +31,16 @@ export type CollectionFieldPolicy = {
   supply?: FieldPolicy<any> | FieldReadFunction<any>;
   volume?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type FavoriteCollectionKeySpecifier = (
-  | 'address'
-  | 'id'
-  | 'pastFloorPriceArray'
-  | 'pastVolumeArray'
-  | 'users'
-  | FavoriteCollectionKeySpecifier
+export type MutationKeySpecifier = (
+  | 'authenticate'
+  | 'checkIfUserExists'
+  | 'markCollectionAsFavorite'
+  | MutationKeySpecifier
 )[];
-export type FavoriteCollectionFieldPolicy = {
-  address?: FieldPolicy<any> | FieldReadFunction<any>;
-  id?: FieldPolicy<any> | FieldReadFunction<any>;
-  pastFloorPriceArray?: FieldPolicy<any> | FieldReadFunction<any>;
-  pastVolumeArray?: FieldPolicy<any> | FieldReadFunction<any>;
-  users?: FieldPolicy<any> | FieldReadFunction<any>;
-};
-export type MutationKeySpecifier = ('authenticate' | 'checkIfUserExists' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
   authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
+  markCollectionAsFavorite?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
@@ -102,10 +93,6 @@ export type StrictTypedTypePolicies = {
   Collection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | CollectionKeySpecifier | (() => undefined | CollectionKeySpecifier);
     fields?: CollectionFieldPolicy;
-  };
-  FavoriteCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
-    keyFields?: false | FavoriteCollectionKeySpecifier | (() => undefined | FavoriteCollectionKeySpecifier);
-    fields?: FavoriteCollectionFieldPolicy;
   };
   Mutation?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier);
