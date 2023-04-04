@@ -1,12 +1,11 @@
 import { useParams } from 'react-router-dom';
-import Button from '../../../components/Button';
 import Loading from '../../../components/Loading/Loading';
-import { useGetCollectionQuery, useMarkCollectionAsFavoriteMutation } from '../../../graphql/generated/hooks';
-import { ReactComponent as Star } from '../../../assets/icons/Star.svg';
+import { useGetCollectionQuery } from '../../../graphql/generated/hooks';
 import DescriptionBox from './DescriptionBox';
 import ErrorMessage from '../../../components/ErrorMessage';
 import AssetGrid from '../../../components/TokenGrid';
 import TextDivider from '../../../components/TextDivider';
+import FavoriteButton from './FavoriteButton';
 
 interface StatsBoxProps {
   stat: string;
@@ -25,22 +24,10 @@ const Collection = () => {
 
   const { data, loading, error } = useGetCollectionQuery({ variables: { collectionSlug: collectionSlug || '' } });
 
-  const [markCollectionAsFavorite, { data: mutationData, loading: mutationLoading }] =
-    useMarkCollectionAsFavoriteMutation();
-
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
 
   const { getCollection: collection } = data;
-
-  console.log(mutationData);
-
-  const onFavorite = () =>
-    markCollectionAsFavorite({
-      variables: {
-        markCollectionAsFavoriteData: { address: collection.address || '', collectionSlug: collectionSlug || '' }
-      }
-    });
 
   return (
     <div className="w-full flex flex-col relative h-full text-white overflow-y-scroll">
@@ -56,11 +43,7 @@ const Collection = () => {
           {!!collection.description && <DescriptionBox description={collection.description} />}
         </div>
         <div className="flex flex-col items-end justify-between">
-          {!!collection.address && (
-            <Button className="mb-4" onClick={onFavorite} isActionLoading={mutationLoading}>
-              <Star /> <span>Favorite</span>
-            </Button>
-          )}
+          {!!collection.address && <FavoriteButton collectionAddress={collection.address} />}
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
             <StatsBox stat={`${collection.floorPrice || 0} ETH`} statName="Floor price" />

@@ -11,7 +11,7 @@ const Sidebar = () => {
   const handleDisconnect = useLogout();
 
   return (
-    <div className="h-full border-r border-dark-40 w-[364px] pt-8 px-8 pb-10 flex flex-col">
+    <div className="h-full border-r border-dark-40 w-[260px] pt-8 px-8 pb-10 flex flex-col">
       <div className="flex flex-col space-y-2 text-base mb-8">
         <span className="text-dark-40">My account</span>
         <span className="truncate text-white text-xl">{myUser?.walletAddress}</span>

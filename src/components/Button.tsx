@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 const buttonVariants = {
   default: 'bg-transparent border border-white hover:bg-dark-90',
-  defaultFull: 'bg-white border border-white',
+  defaultFull: 'bg-white border border-white text-black',
   small: 'bg-primary'
 };
 
