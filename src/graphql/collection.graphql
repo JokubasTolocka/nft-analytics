@@ -27,3 +27,14 @@ query searchCollections($searchSlug: String!) {
 mutation markCollectionAsFavorite($markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput!) {
   markCollectionAsFavorite(markCollectionAsFavoriteData: $markCollectionAsFavoriteData)
 }
+
+query getFavoritedCollections {
+  getFavoritedCollections {
+    collectionSlug
+    address
+    name
+    image
+    pastFloorPriceArray
+    pastVolumeArray
+  }
+}

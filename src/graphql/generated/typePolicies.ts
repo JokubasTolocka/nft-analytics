@@ -31,6 +31,25 @@ export type CollectionFieldPolicy = {
   supply?: FieldPolicy<any> | FieldReadFunction<any>;
   volume?: FieldPolicy<any> | FieldReadFunction<any>;
 };
+export type FavoriteCollectionKeySpecifier = (
+  | 'address'
+  | 'collectionSlug'
+  | 'image'
+  | 'name'
+  | 'owners'
+  | 'pastFloorPriceArray'
+  | 'pastVolumeArray'
+  | FavoriteCollectionKeySpecifier
+)[];
+export type FavoriteCollectionFieldPolicy = {
+  address?: FieldPolicy<any> | FieldReadFunction<any>;
+  collectionSlug?: FieldPolicy<any> | FieldReadFunction<any>;
+  image?: FieldPolicy<any> | FieldReadFunction<any>;
+  name?: FieldPolicy<any> | FieldReadFunction<any>;
+  owners?: FieldPolicy<any> | FieldReadFunction<any>;
+  pastFloorPriceArray?: FieldPolicy<any> | FieldReadFunction<any>;
+  pastVolumeArray?: FieldPolicy<any> | FieldReadFunction<any>;
+};
 export type MutationKeySpecifier = (
   | 'authenticate'
   | 'checkIfUserExists'
@@ -44,6 +63,7 @@ export type MutationFieldPolicy = {
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
+  | 'getFavoritedCollections'
   | 'getMyAssets'
   | 'myUser'
   | 'searchCollections'
@@ -51,6 +71,7 @@ export type QueryKeySpecifier = (
 )[];
 export type QueryFieldPolicy = {
   getCollection?: FieldPolicy<any> | FieldReadFunction<any>;
+  getFavoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
   getMyAssets?: FieldPolicy<any> | FieldReadFunction<any>;
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;
   searchCollections?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -93,6 +114,10 @@ export type StrictTypedTypePolicies = {
   Collection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | CollectionKeySpecifier | (() => undefined | CollectionKeySpecifier);
     fields?: CollectionFieldPolicy;
+  };
+  FavoriteCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
+    keyFields?: false | FavoriteCollectionKeySpecifier | (() => undefined | FavoriteCollectionKeySpecifier);
+    fields?: FavoriteCollectionFieldPolicy;
   };
   Mutation?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier);

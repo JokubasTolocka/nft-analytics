@@ -51,6 +51,20 @@ export type Collection = {
   volume?: Maybe<Scalars['Float']>;
 };
 
+export type FavoriteCollection = {
+  __typename: 'FavoriteCollection';
+  /** Collection address */
+  address: Scalars['String'];
+  collectionSlug?: Maybe<Scalars['String']>;
+  /** Collection image  */
+  image?: Maybe<Scalars['String']>;
+  /** Collection name */
+  name: Scalars['String'];
+  owners: Array<Scalars['String']>;
+  pastFloorPriceArray: Array<Scalars['Float']>;
+  pastVolumeArray: Array<Scalars['Float']>;
+};
+
 export type MarkCollectionAsFavoriteInput = {
   /** Collection address */
   address: Scalars['String'];
@@ -80,6 +94,7 @@ export type MutationMarkCollectionAsFavoriteArgs = {
 export type Query = {
   __typename: 'Query';
   getCollection: Collection;
+  getFavoritedCollections: Array<FavoriteCollection>;
   getMyAssets: Array<Asset>;
   myUser: User;
   searchCollections: Array<ShortCollection>;

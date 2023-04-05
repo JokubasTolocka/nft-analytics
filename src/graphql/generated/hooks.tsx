@@ -153,6 +153,61 @@ export type MarkCollectionAsFavoriteMutationOptions = Apollo.BaseMutationOptions
   Types.MarkCollectionAsFavoriteMutation,
   Types.MarkCollectionAsFavoriteMutationVariables
 >;
+export const GetFavoritedCollectionsDocument = gql`
+  query getFavoritedCollections {
+    getFavoritedCollections {
+      collectionSlug
+      address
+      name
+      image
+      pastFloorPriceArray
+      pastVolumeArray
+    }
+  }
+`;
+
+/**
+ * __useGetFavoritedCollectionsQuery__
+ *
+ * To run a query within a React component, call `useGetFavoritedCollectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFavoritedCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFavoritedCollectionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFavoritedCollectionsQuery(
+  baseOptions?: Apollo.QueryHookOptions<Types.GetFavoritedCollectionsQuery, Types.GetFavoritedCollectionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<Types.GetFavoritedCollectionsQuery, Types.GetFavoritedCollectionsQueryVariables>(
+    GetFavoritedCollectionsDocument,
+    options
+  );
+}
+export function useGetFavoritedCollectionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Types.GetFavoritedCollectionsQuery,
+    Types.GetFavoritedCollectionsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<Types.GetFavoritedCollectionsQuery, Types.GetFavoritedCollectionsQueryVariables>(
+    GetFavoritedCollectionsDocument,
+    options
+  );
+}
+export type GetFavoritedCollectionsQueryHookResult = ReturnType<typeof useGetFavoritedCollectionsQuery>;
+export type GetFavoritedCollectionsLazyQueryHookResult = ReturnType<typeof useGetFavoritedCollectionsLazyQuery>;
+export type GetFavoritedCollectionsQueryResult = Apollo.QueryResult<
+  Types.GetFavoritedCollectionsQuery,
+  Types.GetFavoritedCollectionsQueryVariables
+>;
 export const AuthenticateDocument = gql`
   mutation authenticate($authenticateInput: AuthenticateInput!) {
     authenticate(authenticateInput: $authenticateInput)

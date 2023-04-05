@@ -41,6 +41,21 @@ export type MarkCollectionAsFavoriteMutationVariables = Types.Exact<{
 
 export type MarkCollectionAsFavoriteMutation = { __typename: 'Mutation'; markCollectionAsFavorite: boolean };
 
+export type GetFavoritedCollectionsQueryVariables = Types.Exact<{ [key: string]: never }>;
+
+export type GetFavoritedCollectionsQuery = {
+  __typename: 'Query';
+  getFavoritedCollections: Array<{
+    __typename: 'FavoriteCollection';
+    collectionSlug?: string | null;
+    address: string;
+    name: string;
+    image?: string | null;
+    pastFloorPriceArray: Array<number>;
+    pastVolumeArray: Array<number>;
+  }>;
+};
+
 export type AuthenticateMutationVariables = Types.Exact<{
   authenticateInput: Types.AuthenticateInput;
 }>;

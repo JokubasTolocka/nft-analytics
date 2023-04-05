@@ -23,7 +23,7 @@ const SidebarLink = ({
   const isCurrentRoute = location.pathname === to;
 
   const componentClass = cx(
-    'rounded-[16px] px-4 py-3 flex items-center justify-start text-white hover:bg-dark-90 w-full',
+    'rounded-[16px] px-4 py-3 flex items-center justify-start text-white hover:bg-dark-90 w-full font-medium',
     isCurrentRoute && 'bg-white text-dark-100 stroke-dark-100 hover:!bg-dark-20',
     className
   );
