@@ -31,11 +31,11 @@ const Collection = () => {
 
   return (
     <div className="w-full flex flex-col relative h-full text-white overflow-y-scroll">
-      <img alt="bannerImg" src={collection.bannerImage || ''} className="h-[220px] object-cover" />
+      <img alt="bannerImg" src={collection.bannerImage || ''} className="!h-[220px] object-cover w-full" />
       <img
         alt="mainImage"
         src={collection.image || ''}
-        className="w-[180px] h-[180px] border-8 border-dark-100 rounded-[14px] absolute left-16 top-4 md:top-[72px]"
+        className="w-[180px] h-[180px] border-8 border-dark-100 bg-dark-100 rounded-[14px] absolute left-16 top-4 md:top-[72px]"
       />
       <div className="mt-12 mx-16 flex justify-between mb-8">
         <div className="flex flex-col">

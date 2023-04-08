@@ -22,21 +22,26 @@ const FavoritedCollections = () => {
       <span className="text-[32px] font-medium">Favorites</span>
       <div className="mt-8 flex space-x-6">
         {getFavoritedCollections.slice(0, COLLECTION_LIMIT).map((collection) => (
-          <div className="flex-col w-[180px] truncate" key={collection.address}>
+          <Link
+            to={`/collection/${collection.collectionSlug}`}
+            className="flex-col w-[180px] truncate"
+            key={collection.address}>
             <img src={collection.image || ''} alt={collection.name} className="aspect-square rounded-[14px] mb-4" />
             <span className="text-2xl font-medium truncate">{collection.name}</span>
             <div className="mt-3 font-medium flex justify-between mb-0.5">
-              <span className="">{collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1]} ETH</span>
+              <span className="truncate">
+                {collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1]} ETH
+              </span>
               <PriceMovement pastPriceArray={collection.pastFloorPriceArray} />
             </div>
             <span className="text-dark-40">Floor</span>
-          </div>
+          </Link>
         ))}
         {getFavoritedCollections.length <= COLLECTION_LIMIT ? (
           <NoCollectionsPlaceholder />
         ) : (
-          <Link to="/favorites" className="flex flex-col justify-center items-center rounded-[14px] bg-dark-90">
-            <div className="rounded-full bg-primary text-white font-medium mb-4 p-4">
+          <Link to="/favorites" className="flex flex-col justify-center items-center rounded-[14px] flex-1 bg-dark-90">
+            <div className="rounded-full bg-primary text-white font-medium mb-4 h-12 w-12 flex items-center justify-center">
               +{getFavoritedCollections.length - COLLECTION_LIMIT}
             </div>
             <span className="text-white text-center">Click here to see more</span>
