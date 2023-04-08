@@ -1,17 +1,26 @@
 import { useConnect, useSignMessage } from 'wagmi';
 import Cookies from 'js-cookie';
 import { InjectedConnector } from 'wagmi/connectors/injected';
-import { useCheckIfUserExistsMutation, useAuthenticateMutation } from '../../../graphql/generated/hooks';
+import {
+  useCheckIfUserExistsMutation,
+  useAuthenticateMutation,
+  useMyUserLazyQuery
+} from '../../../graphql/generated/hooks';
 import { Constants } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/Auth/useAuth';
+import { User } from '../../../graphql/generated/types';
 
 const useLogin = () => {
   const navigate = useNavigate();
   const { connectAsync } = useConnect();
   const { signMessageAsync } = useSignMessage();
+  const { setMyUser } = useAuth();
 
   const [checkIfUserExists] = useCheckIfUserExistsMutation();
   const [authenticateUser] = useAuthenticateMutation();
+
+  const [getMyUser] = useMyUserLazyQuery();
 
   const getWalletAddress = async () => {
     const { account } = await connectAsync({
@@ -42,11 +51,17 @@ const useLogin = () => {
             Cookies.set(Constants.JWT_AUTH, JSON.stringify(token), { expires: 7 });
             Cookies.set(Constants.IS_LOGGED_IN, JSON.stringify(true));
 
-            // If the user has never been asked for the email, give them the option to provide
-            if (!hasSkippedEmail) return navigate('/verify');
+            getMyUser({
+              onCompleted: ({ myUser }) => {
+                setMyUser(myUser as User);
 
-            // Refresh page to get new cookies and show home page
-            navigate(0);
+                // If the user has never been asked for the email, give them the option to provide
+                if (!hasSkippedEmail) return navigate('/verify');
+
+                // Refresh page to get new cookies and show home page
+                navigate(0);
+              }
+            });
           }
         });
       }

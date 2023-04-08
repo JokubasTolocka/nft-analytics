@@ -56,6 +56,7 @@ export type MutationKeySpecifier = (
   | 'checkIfUserExists'
   | 'markCollectionAsFavorite'
   | 'skipEmail'
+  | 'updatePriceDifference'
   | MutationKeySpecifier
 )[];
 export type MutationFieldPolicy = {
@@ -64,6 +65,7 @@ export type MutationFieldPolicy = {
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
   markCollectionAsFavorite?: FieldPolicy<any> | FieldReadFunction<any>;
   skipEmail?: FieldPolicy<any> | FieldReadFunction<any>;
+  updatePriceDifference?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
@@ -101,6 +103,7 @@ export type UserKeySpecifier = (
   | 'hasSkippedEmail'
   | 'id'
   | 'nonce'
+  | 'priceDifference'
   | 'walletAddress'
   | UserKeySpecifier
 )[];
@@ -110,6 +113,7 @@ export type UserFieldPolicy = {
   hasSkippedEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   id?: FieldPolicy<any> | FieldReadFunction<any>;
   nonce?: FieldPolicy<any> | FieldReadFunction<any>;
+  priceDifference?: FieldPolicy<any> | FieldReadFunction<any>;
   walletAddress?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type StrictTypedTypePolicies = {

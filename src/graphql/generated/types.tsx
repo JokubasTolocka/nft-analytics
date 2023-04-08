@@ -74,11 +74,12 @@ export type MarkCollectionAsFavoriteInput = {
 
 export type Mutation = {
   __typename: 'Mutation';
-  addEmail: Scalars['Boolean'];
+  addEmail: User;
   authenticate: Scalars['String'];
   checkIfUserExists: User;
   markCollectionAsFavorite: Scalars['Boolean'];
   skipEmail: Scalars['Boolean'];
+  updatePriceDifference: User;
 };
 
 export type MutationAddEmailArgs = {
@@ -95,6 +96,10 @@ export type MutationCheckIfUserExistsArgs = {
 
 export type MutationMarkCollectionAsFavoriteArgs = {
   markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput;
+};
+
+export type MutationUpdatePriceDifferenceArgs = {
+  priceDifference: Scalars['Float'];
 };
 
 export type Query = {
@@ -134,10 +139,12 @@ export type User = {
   /** User favorited collections */
   favoritedCollections: Array<Scalars['String']>;
   /** Has user skipped the email prompt */
-  hasSkippedEmail: Scalars['String'];
+  hasSkippedEmail: Scalars['Boolean'];
   id: Scalars['String'];
   /** User wallet nonce */
   nonce: Scalars['String'];
+  /** User set priceDifference to notify on */
+  priceDifference: Scalars['Float'];
   /** User walletAddress */
   walletAddress: Scalars['String'];
 };

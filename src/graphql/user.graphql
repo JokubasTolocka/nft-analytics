@@ -1,23 +1,25 @@
+fragment User on User {
+  walletAddress
+  email
+  hasSkippedEmail
+  priceDifference
+  favoritedCollections
+}
+
 mutation authenticate($authenticateInput: AuthenticateInput!) {
   authenticate(authenticateInput: $authenticateInput)
 }
 
 mutation checkIfUserExists($walletAddress: String!) {
   checkIfUserExists(walletAddress: $walletAddress) {
-    walletAddress
+    ...User
     nonce
-    hasSkippedEmail
-    email
   }
 }
 
 query myUser {
   myUser {
-    id
-    walletAddress
-    email
-    hasSkippedEmail
-    favoritedCollections
+    ...User
   }
 }
 
@@ -31,7 +33,15 @@ query getMyAssets {
 }
 
 mutation addEmail($email: String!) {
-  addEmail(email: $email)
+  addEmail(email: $email) {
+    ...User
+  }
+}
+
+mutation updatePriceDifference($priceDifference: Float!) {
+  updatePriceDifference(priceDifference: $priceDifference) {
+    ...User
+  }
 }
 
 mutation skipEmail {

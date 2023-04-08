@@ -10,7 +10,7 @@ const buttonVariants = {
 
 interface ButtonProps {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   isActionLoading?: boolean;
   variant?: keyof typeof buttonVariants;
 }
@@ -28,7 +28,7 @@ const Button = ({
       buttonVariants[variant],
       className
     )}
-    onClick={() => !isActionLoading && onClick()}
+    onClick={() => !isActionLoading && onClick && onClick()}
     disabled={isActionLoading}>
     {!isActionLoading ? children : 'Loading...'}
   </button>

@@ -3,7 +3,15 @@ import * as Types from './operationsTypes';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-
+export const UserFragmentDoc = gql`
+  fragment User on User {
+    walletAddress
+    email
+    hasSkippedEmail
+    priceDifference
+    favoritedCollections
+  }
+`;
 export const GetCollectionDocument = gql`
   query getCollection($collectionSlug: String!) {
     getCollection(collectionSlug: $collectionSlug) {
@@ -253,12 +261,11 @@ export type AuthenticateMutationOptions = Apollo.BaseMutationOptions<
 export const CheckIfUserExistsDocument = gql`
   mutation checkIfUserExists($walletAddress: String!) {
     checkIfUserExists(walletAddress: $walletAddress) {
-      walletAddress
+      ...User
       nonce
-      hasSkippedEmail
-      email
     }
   }
+  ${UserFragmentDoc}
 `;
 export type CheckIfUserExistsMutationFn = Apollo.MutationFunction<
   Types.CheckIfUserExistsMutation,
@@ -300,13 +307,10 @@ export type CheckIfUserExistsMutationOptions = Apollo.BaseMutationOptions<
 export const MyUserDocument = gql`
   query myUser {
     myUser {
-      id
-      walletAddress
-      email
-      hasSkippedEmail
-      favoritedCollections
+      ...User
     }
   }
+  ${UserFragmentDoc}
 `;
 
 /**
@@ -380,8 +384,11 @@ export type GetMyAssetsLazyQueryHookResult = ReturnType<typeof useGetMyAssetsLaz
 export type GetMyAssetsQueryResult = Apollo.QueryResult<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>;
 export const AddEmailDocument = gql`
   mutation addEmail($email: String!) {
-    addEmail(email: $email)
+    addEmail(email: $email) {
+      ...User
+    }
   }
+  ${UserFragmentDoc}
 `;
 export type AddEmailMutationFn = Apollo.MutationFunction<Types.AddEmailMutation, Types.AddEmailMutationVariables>;
 
@@ -413,6 +420,54 @@ export type AddEmailMutationResult = Apollo.MutationResult<Types.AddEmailMutatio
 export type AddEmailMutationOptions = Apollo.BaseMutationOptions<
   Types.AddEmailMutation,
   Types.AddEmailMutationVariables
+>;
+export const UpdatePriceDifferenceDocument = gql`
+  mutation updatePriceDifference($priceDifference: Float!) {
+    updatePriceDifference(priceDifference: $priceDifference) {
+      ...User
+    }
+  }
+  ${UserFragmentDoc}
+`;
+export type UpdatePriceDifferenceMutationFn = Apollo.MutationFunction<
+  Types.UpdatePriceDifferenceMutation,
+  Types.UpdatePriceDifferenceMutationVariables
+>;
+
+/**
+ * __useUpdatePriceDifferenceMutation__
+ *
+ * To run a mutation, you first call `useUpdatePriceDifferenceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePriceDifferenceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePriceDifferenceMutation, { data, loading, error }] = useUpdatePriceDifferenceMutation({
+ *   variables: {
+ *      priceDifference: // value for 'priceDifference'
+ *   },
+ * });
+ */
+export function useUpdatePriceDifferenceMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    Types.UpdatePriceDifferenceMutation,
+    Types.UpdatePriceDifferenceMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<Types.UpdatePriceDifferenceMutation, Types.UpdatePriceDifferenceMutationVariables>(
+    UpdatePriceDifferenceDocument,
+    options
+  );
+}
+export type UpdatePriceDifferenceMutationHookResult = ReturnType<typeof useUpdatePriceDifferenceMutation>;
+export type UpdatePriceDifferenceMutationResult = Apollo.MutationResult<Types.UpdatePriceDifferenceMutation>;
+export type UpdatePriceDifferenceMutationOptions = Apollo.BaseMutationOptions<
+  Types.UpdatePriceDifferenceMutation,
+  Types.UpdatePriceDifferenceMutationVariables
 >;
 export const SkipEmailDocument = gql`
   mutation skipEmail {

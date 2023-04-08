@@ -2,21 +2,27 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
+import { useAuth } from '../../../contexts/Auth/useAuth';
 import { useAddEmailMutation, useSkipEmailMutation } from '../../../graphql/generated/hooks';
+import { User } from '../../../graphql/generated/types';
 
 // source: https://www.w3resource.com/javascript/form/email-validation.php
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const AddEmailPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState('');
   const [inputError, setInputError] = useState('');
+  const { setMyUser } = useAuth();
   const navigate = useNavigate();
 
   const navigateHome = () => navigate('/');
 
   const [addEmail, { loading: addEmailLoading, error: addEmailError }] = useAddEmailMutation({
-    onCompleted: navigateHome
+    onCompleted: ({ addEmail }) => {
+      setMyUser(addEmail as User);
+      navigateHome;
+    }
   });
 
   const [skipEmail, { loading: skipEmailLoading, error: skipEmailError }] = useSkipEmailMutation({

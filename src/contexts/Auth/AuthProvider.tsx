@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client';
-import { createContext, PropsWithChildren, useState } from 'react';
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from 'react';
 import { useMyUserQuery } from '../../graphql/generated/hooks';
 import { User } from '../../graphql/generated/types';
 import useCookies from '../../hooks/useCookies';
@@ -9,6 +9,7 @@ import { Constants } from '../../utils/constants';
 export interface AuthState {
   error?: ApolloError;
   myUser?: User;
+  setMyUser: Dispatch<SetStateAction<User | undefined>>;
 }
 
 export const AuthContext = createContext<AuthState | null>(null);
@@ -32,5 +33,5 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     );
   }
 
-  return <AuthContext.Provider value={{ myUser }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ myUser, setMyUser }}>{children}</AuthContext.Provider>;
 };

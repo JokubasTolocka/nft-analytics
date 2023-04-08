@@ -56,6 +56,15 @@ export type GetFavoritedCollectionsQuery = {
   }>;
 };
 
+export type UserFragment = {
+  __typename: 'User';
+  walletAddress: string;
+  email?: string | null;
+  hasSkippedEmail: boolean;
+  priceDifference: number;
+  favoritedCollections: Array<string>;
+};
+
 export type AuthenticateMutationVariables = Types.Exact<{
   authenticateInput: Types.AuthenticateInput;
 }>;
@@ -70,10 +79,12 @@ export type CheckIfUserExistsMutation = {
   __typename: 'Mutation';
   checkIfUserExists: {
     __typename: 'User';
-    walletAddress: string;
     nonce: string;
-    hasSkippedEmail: string;
+    walletAddress: string;
     email?: string | null;
+    hasSkippedEmail: boolean;
+    priceDifference: number;
+    favoritedCollections: Array<string>;
   };
 };
 
@@ -83,10 +94,10 @@ export type MyUserQuery = {
   __typename: 'Query';
   myUser: {
     __typename: 'User';
-    id: string;
     walletAddress: string;
     email?: string | null;
-    hasSkippedEmail: string;
+    hasSkippedEmail: boolean;
+    priceDifference: number;
     favoritedCollections: Array<string>;
   };
 };
@@ -108,7 +119,33 @@ export type AddEmailMutationVariables = Types.Exact<{
   email: Types.Scalars['String'];
 }>;
 
-export type AddEmailMutation = { __typename: 'Mutation'; addEmail: boolean };
+export type AddEmailMutation = {
+  __typename: 'Mutation';
+  addEmail: {
+    __typename: 'User';
+    walletAddress: string;
+    email?: string | null;
+    hasSkippedEmail: boolean;
+    priceDifference: number;
+    favoritedCollections: Array<string>;
+  };
+};
+
+export type UpdatePriceDifferenceMutationVariables = Types.Exact<{
+  priceDifference: Types.Scalars['Float'];
+}>;
+
+export type UpdatePriceDifferenceMutation = {
+  __typename: 'Mutation';
+  updatePriceDifference: {
+    __typename: 'User';
+    walletAddress: string;
+    email?: string | null;
+    hasSkippedEmail: boolean;
+    priceDifference: number;
+    favoritedCollections: Array<string>;
+  };
+};
 
 export type SkipEmailMutationVariables = Types.Exact<{ [key: string]: never }>;
 
