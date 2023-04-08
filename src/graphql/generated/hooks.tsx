@@ -255,6 +255,8 @@ export const CheckIfUserExistsDocument = gql`
     checkIfUserExists(walletAddress: $walletAddress) {
       walletAddress
       nonce
+      hasSkippedEmail
+      email
     }
   }
 `;
@@ -301,6 +303,7 @@ export const MyUserDocument = gql`
       id
       walletAddress
       email
+      hasSkippedEmail
       favoritedCollections
     }
   }
@@ -375,3 +378,74 @@ export function useGetMyAssetsLazyQuery(
 export type GetMyAssetsQueryHookResult = ReturnType<typeof useGetMyAssetsQuery>;
 export type GetMyAssetsLazyQueryHookResult = ReturnType<typeof useGetMyAssetsLazyQuery>;
 export type GetMyAssetsQueryResult = Apollo.QueryResult<Types.GetMyAssetsQuery, Types.GetMyAssetsQueryVariables>;
+export const AddEmailDocument = gql`
+  mutation addEmail($email: String!) {
+    addEmail(email: $email)
+  }
+`;
+export type AddEmailMutationFn = Apollo.MutationFunction<Types.AddEmailMutation, Types.AddEmailMutationVariables>;
+
+/**
+ * __useAddEmailMutation__
+ *
+ * To run a mutation, you first call `useAddEmailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddEmailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addEmailMutation, { data, loading, error }] = useAddEmailMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useAddEmailMutation(
+  baseOptions?: Apollo.MutationHookOptions<Types.AddEmailMutation, Types.AddEmailMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<Types.AddEmailMutation, Types.AddEmailMutationVariables>(AddEmailDocument, options);
+}
+export type AddEmailMutationHookResult = ReturnType<typeof useAddEmailMutation>;
+export type AddEmailMutationResult = Apollo.MutationResult<Types.AddEmailMutation>;
+export type AddEmailMutationOptions = Apollo.BaseMutationOptions<
+  Types.AddEmailMutation,
+  Types.AddEmailMutationVariables
+>;
+export const SkipEmailDocument = gql`
+  mutation skipEmail {
+    skipEmail
+  }
+`;
+export type SkipEmailMutationFn = Apollo.MutationFunction<Types.SkipEmailMutation, Types.SkipEmailMutationVariables>;
+
+/**
+ * __useSkipEmailMutation__
+ *
+ * To run a mutation, you first call `useSkipEmailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSkipEmailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [skipEmailMutation, { data, loading, error }] = useSkipEmailMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSkipEmailMutation(
+  baseOptions?: Apollo.MutationHookOptions<Types.SkipEmailMutation, Types.SkipEmailMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<Types.SkipEmailMutation, Types.SkipEmailMutationVariables>(SkipEmailDocument, options);
+}
+export type SkipEmailMutationHookResult = ReturnType<typeof useSkipEmailMutation>;
+export type SkipEmailMutationResult = Apollo.MutationResult<Types.SkipEmailMutation>;
+export type SkipEmailMutationOptions = Apollo.BaseMutationOptions<
+  Types.SkipEmailMutation,
+  Types.SkipEmailMutationVariables
+>;

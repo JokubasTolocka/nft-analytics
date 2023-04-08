@@ -51,15 +51,19 @@ export type FavoriteCollectionFieldPolicy = {
   pastVolumeArray?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type MutationKeySpecifier = (
+  | 'addEmail'
   | 'authenticate'
   | 'checkIfUserExists'
   | 'markCollectionAsFavorite'
+  | 'skipEmail'
   | MutationKeySpecifier
 )[];
 export type MutationFieldPolicy = {
+  addEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
   markCollectionAsFavorite?: FieldPolicy<any> | FieldReadFunction<any>;
+  skipEmail?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
@@ -94,6 +98,7 @@ export type ShortCollectionFieldPolicy = {
 export type UserKeySpecifier = (
   | 'email'
   | 'favoritedCollections'
+  | 'hasSkippedEmail'
   | 'id'
   | 'nonce'
   | 'walletAddress'
@@ -102,6 +107,7 @@ export type UserKeySpecifier = (
 export type UserFieldPolicy = {
   email?: FieldPolicy<any> | FieldReadFunction<any>;
   favoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+  hasSkippedEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   id?: FieldPolicy<any> | FieldReadFunction<any>;
   nonce?: FieldPolicy<any> | FieldReadFunction<any>;
   walletAddress?: FieldPolicy<any> | FieldReadFunction<any>;

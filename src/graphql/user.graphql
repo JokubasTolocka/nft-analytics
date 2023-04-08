@@ -6,6 +6,8 @@ mutation checkIfUserExists($walletAddress: String!) {
   checkIfUserExists(walletAddress: $walletAddress) {
     walletAddress
     nonce
+    hasSkippedEmail
+    email
   }
 }
 
@@ -14,6 +16,7 @@ query myUser {
     id
     walletAddress
     email
+    hasSkippedEmail
     favoritedCollections
   }
 }
@@ -25,4 +28,12 @@ query getMyAssets {
     collectionSlug
     collectionName
   }
+}
+
+mutation addEmail($email: String!) {
+  addEmail(email: $email)
+}
+
+mutation skipEmail {
+  skipEmail
 }

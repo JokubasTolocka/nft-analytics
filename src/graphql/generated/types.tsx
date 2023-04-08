@@ -74,9 +74,15 @@ export type MarkCollectionAsFavoriteInput = {
 
 export type Mutation = {
   __typename: 'Mutation';
+  addEmail: Scalars['Boolean'];
   authenticate: Scalars['String'];
   checkIfUserExists: User;
   markCollectionAsFavorite: Scalars['Boolean'];
+  skipEmail: Scalars['Boolean'];
+};
+
+export type MutationAddEmailArgs = {
+  email: Scalars['String'];
 };
 
 export type MutationAuthenticateArgs = {
@@ -123,13 +129,15 @@ export type ShortCollection = {
 
 export type User = {
   __typename: 'User';
-  /** User email  */
+  /** User email */
   email?: Maybe<Scalars['String']>;
   /** User favorited collections */
   favoritedCollections: Array<Scalars['String']>;
+  /** Has user skipped the email prompt */
+  hasSkippedEmail: Scalars['String'];
   id: Scalars['String'];
-  /** User wallet nonce  */
+  /** User wallet nonce */
   nonce: Scalars['String'];
-  /** User walletAddress  */
+  /** User walletAddress */
   walletAddress: Scalars['String'];
 };

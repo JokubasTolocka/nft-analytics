@@ -68,7 +68,13 @@ export type CheckIfUserExistsMutationVariables = Types.Exact<{
 
 export type CheckIfUserExistsMutation = {
   __typename: 'Mutation';
-  checkIfUserExists: { __typename: 'User'; walletAddress: string; nonce: string };
+  checkIfUserExists: {
+    __typename: 'User';
+    walletAddress: string;
+    nonce: string;
+    hasSkippedEmail: string;
+    email?: string | null;
+  };
 };
 
 export type MyUserQueryVariables = Types.Exact<{ [key: string]: never }>;
@@ -80,6 +86,7 @@ export type MyUserQuery = {
     id: string;
     walletAddress: string;
     email?: string | null;
+    hasSkippedEmail: string;
     favoritedCollections: Array<string>;
   };
 };
@@ -96,3 +103,13 @@ export type GetMyAssetsQuery = {
     collectionName?: string | null;
   }>;
 };
+
+export type AddEmailMutationVariables = Types.Exact<{
+  email: Types.Scalars['String'];
+}>;
+
+export type AddEmailMutation = { __typename: 'Mutation'; addEmail: boolean };
+
+export type SkipEmailMutationVariables = Types.Exact<{ [key: string]: never }>;
+
+export type SkipEmailMutation = { __typename: 'Mutation'; skipEmail: boolean };

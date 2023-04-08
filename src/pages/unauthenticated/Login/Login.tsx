@@ -1,6 +1,6 @@
-import Container from '../../components/Container';
+import Container from '../../../components/Container';
 import useLogin from './useLogin';
-import metamask from '../../assets/images/metamask.png';
+import metamask from '../../../assets/images/metamask.png';
 
 const Login = () => {
   const handleAuth = useLogin();
@@ -9,7 +9,9 @@ const Login = () => {
     <div className="bg-dark-100 h-full w-full flex flex-col">
       <div className="flex h-full justify-center items-center">
         <div className="pb-20">
-          <Container title="Welcome">
+          <Container
+            title="Welcome"
+            footerText="If you don’t have a wallet, create one using one of the providers above">
             <>
               <button
                 onClick={handleAuth}

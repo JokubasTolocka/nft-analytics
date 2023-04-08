@@ -4,7 +4,8 @@ import cx from 'classnames';
 const buttonVariants = {
   default: 'bg-transparent border border-white hover:bg-dark-90',
   defaultFull: 'bg-white border border-white text-black',
-  small: 'bg-primary'
+  small: 'bg-primary',
+  dark: 'bg-dark-80'
 };
 
 interface ButtonProps {
@@ -22,7 +23,11 @@ const Button = ({
   isActionLoading
 }: PropsWithChildren<ButtonProps>) => (
   <button
-    className={cx('flex space-x-2 items-center rounded-2xl py-3 px-6 text-lg', buttonVariants[variant], className)}
+    className={cx(
+      'flex space-x-2 items-center rounded-2xl py-3 px-6 text-lg text-center justify-center font-medium',
+      buttonVariants[variant],
+      className
+    )}
     onClick={() => !isActionLoading && onClick()}
     disabled={isActionLoading}>
     {!isActionLoading ? children : 'Loading...'}

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Sidebar from './components/Sidebar/Sidebar';
 import { useAuth } from './contexts/Auth/useAuth';
@@ -6,12 +6,15 @@ import Collection from './pages/authenticated/Collection/Collection';
 import Home from './pages/authenticated/Home/Home';
 import ProfilePage from './pages/authenticated/Profile/ProfilePage';
 import SearchPage from './pages/authenticated/SearchPage/SearchPage';
-import Login from './pages/Login/Login';
+import AddEmailPage from './pages/unauthenticated/AddEmailPage/AddEmailPage';
+import Login from './pages/unauthenticated/Login/Login';
 
 const App = () => {
   const { myUser } = useAuth();
+  const location = useLocation();
 
   if (!myUser) return <Login />;
+  if (location.pathname === '/verify') return <AddEmailPage />;
 
   return (
     <div className="bg-dark-100 h-screen w-full flex flex-col text-white">
