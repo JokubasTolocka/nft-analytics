@@ -6,6 +6,8 @@ import ErrorMessage from '../../../components/ErrorMessage';
 import AssetGrid from '../../../components/TokenGrid';
 import TextDivider from '../../../components/TextDivider';
 import FavoriteButton from './FavoriteButton';
+import { useAuth } from '../../../contexts/Auth/useAuth';
+import GraphSection from './GraphSection';
 
 interface StatsBoxProps {
   stat: string;
@@ -20,6 +22,7 @@ const StatsBox = ({ stat, statName }: StatsBoxProps) => (
 );
 
 const Collection = () => {
+  const { myUser } = useAuth();
   const { collectionSlug } = useParams();
 
   const { data, loading, error } = useGetCollectionQuery({ variables: { collectionSlug: collectionSlug || '' } });
@@ -27,7 +30,19 @@ const Collection = () => {
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
 
+  const getIsFavorite = () => {
+    const collectionIndex = myUser?.favoritedCollections.findIndex(
+      (collectionAddress) => collectionAddress === data?.getCollection.address
+    );
+
+    if (collectionIndex === undefined) return false;
+
+    return collectionIndex > -1;
+  };
+
   const { getCollection: collection } = data;
+
+  const collectionAddress = collection.address;
 
   return (
     <div className="w-full flex flex-col relative h-full text-white overflow-y-scroll">
@@ -43,7 +58,7 @@ const Collection = () => {
           {!!collection.description && <DescriptionBox description={collection.description} />}
         </div>
         <div className="flex flex-col items-end justify-between">
-          {!!collection.address && <FavoriteButton collectionAddress={collection.address} />}
+          {!!collectionAddress && <FavoriteButton collectionAddress={collectionAddress} />}
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
             <StatsBox stat={`${collection.floorPrice || 0} ETH`} statName="Floor price" />
@@ -51,6 +66,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
+      {getIsFavorite() && collectionAddress && <GraphSection address={collectionAddress} />}
       <TextDivider title="Items" className="mx-16" />
       <AssetGrid assets={collection.assets} className="mx-16" />
     </div>

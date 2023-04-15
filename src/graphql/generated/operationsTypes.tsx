@@ -41,6 +41,16 @@ export type MarkCollectionAsFavoriteMutationVariables = Types.Exact<{
 
 export type MarkCollectionAsFavoriteMutation = { __typename: 'Mutation'; markCollectionAsFavorite: boolean };
 
+export type FavoriteCollectionFragment = {
+  __typename: 'FavoriteCollection';
+  collectionSlug?: string | null;
+  address: string;
+  name: string;
+  image?: string | null;
+  pastFloorPriceArray: Array<number>;
+  pastVolumeArray: Array<number>;
+};
+
 export type GetFavoritedCollectionsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type GetFavoritedCollectionsQuery = {
@@ -54,6 +64,23 @@ export type GetFavoritedCollectionsQuery = {
     pastFloorPriceArray: Array<number>;
     pastVolumeArray: Array<number>;
   }>;
+};
+
+export type GetFavoritedCollectionQueryVariables = Types.Exact<{
+  address: Types.Scalars['String'];
+}>;
+
+export type GetFavoritedCollectionQuery = {
+  __typename: 'Query';
+  getFavoritedCollection: {
+    __typename: 'FavoriteCollection';
+    collectionSlug?: string | null;
+    address: string;
+    name: string;
+    image?: string | null;
+    pastFloorPriceArray: Array<number>;
+    pastVolumeArray: Array<number>;
+  };
 };
 
 export type UserFragment = {

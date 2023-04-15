@@ -3,6 +3,16 @@ import * as Types from './operationsTypes';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
+export const FavoriteCollectionFragmentDoc = gql`
+  fragment FavoriteCollection on FavoriteCollection {
+    collectionSlug
+    address
+    name
+    image
+    pastFloorPriceArray
+    pastVolumeArray
+  }
+`;
 export const UserFragmentDoc = gql`
   fragment User on User {
     walletAddress
@@ -164,14 +174,10 @@ export type MarkCollectionAsFavoriteMutationOptions = Apollo.BaseMutationOptions
 export const GetFavoritedCollectionsDocument = gql`
   query getFavoritedCollections {
     getFavoritedCollections {
-      collectionSlug
-      address
-      name
-      image
-      pastFloorPriceArray
-      pastVolumeArray
+      ...FavoriteCollection
     }
   }
+  ${FavoriteCollectionFragmentDoc}
 `;
 
 /**
@@ -215,6 +221,58 @@ export type GetFavoritedCollectionsLazyQueryHookResult = ReturnType<typeof useGe
 export type GetFavoritedCollectionsQueryResult = Apollo.QueryResult<
   Types.GetFavoritedCollectionsQuery,
   Types.GetFavoritedCollectionsQueryVariables
+>;
+export const GetFavoritedCollectionDocument = gql`
+  query getFavoritedCollection($address: String!) {
+    getFavoritedCollection(address: $address) {
+      ...FavoriteCollection
+    }
+  }
+  ${FavoriteCollectionFragmentDoc}
+`;
+
+/**
+ * __useGetFavoritedCollectionQuery__
+ *
+ * To run a query within a React component, call `useGetFavoritedCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFavoritedCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFavoritedCollectionQuery({
+ *   variables: {
+ *      address: // value for 'address'
+ *   },
+ * });
+ */
+export function useGetFavoritedCollectionQuery(
+  baseOptions: Apollo.QueryHookOptions<Types.GetFavoritedCollectionQuery, Types.GetFavoritedCollectionQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<Types.GetFavoritedCollectionQuery, Types.GetFavoritedCollectionQueryVariables>(
+    GetFavoritedCollectionDocument,
+    options
+  );
+}
+export function useGetFavoritedCollectionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    Types.GetFavoritedCollectionQuery,
+    Types.GetFavoritedCollectionQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<Types.GetFavoritedCollectionQuery, Types.GetFavoritedCollectionQueryVariables>(
+    GetFavoritedCollectionDocument,
+    options
+  );
+}
+export type GetFavoritedCollectionQueryHookResult = ReturnType<typeof useGetFavoritedCollectionQuery>;
+export type GetFavoritedCollectionLazyQueryHookResult = ReturnType<typeof useGetFavoritedCollectionLazyQuery>;
+export type GetFavoritedCollectionQueryResult = Apollo.QueryResult<
+  Types.GetFavoritedCollectionQuery,
+  Types.GetFavoritedCollectionQueryVariables
 >;
 export const AuthenticateDocument = gql`
   mutation authenticate($authenticateInput: AuthenticateInput!) {

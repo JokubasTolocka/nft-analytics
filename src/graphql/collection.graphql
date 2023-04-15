@@ -28,13 +28,23 @@ mutation markCollectionAsFavorite($markCollectionAsFavoriteData: MarkCollectionA
   markCollectionAsFavorite(markCollectionAsFavoriteData: $markCollectionAsFavoriteData)
 }
 
+fragment FavoriteCollection on FavoriteCollection {
+  collectionSlug
+  address
+  name
+  image
+  pastFloorPriceArray
+  pastVolumeArray
+}
+
 query getFavoritedCollections {
   getFavoritedCollections {
-    collectionSlug
-    address
-    name
-    image
-    pastFloorPriceArray
-    pastVolumeArray
+    ...FavoriteCollection
+  }
+}
+
+query getFavoritedCollection($address: String!) {
+  getFavoritedCollection(address: $address) {
+    ...FavoriteCollection
   }
 }

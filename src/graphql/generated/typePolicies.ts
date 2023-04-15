@@ -69,6 +69,7 @@ export type MutationFieldPolicy = {
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
+  | 'getFavoritedCollection'
   | 'getFavoritedCollections'
   | 'getMyAssets'
   | 'myUser'
@@ -77,6 +78,7 @@ export type QueryKeySpecifier = (
 )[];
 export type QueryFieldPolicy = {
   getCollection?: FieldPolicy<any> | FieldReadFunction<any>;
+  getFavoritedCollection?: FieldPolicy<any> | FieldReadFunction<any>;
   getFavoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
   getMyAssets?: FieldPolicy<any> | FieldReadFunction<any>;
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;

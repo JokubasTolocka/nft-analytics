@@ -105,6 +105,7 @@ export type MutationUpdatePriceDifferenceArgs = {
 export type Query = {
   __typename: 'Query';
   getCollection: Collection;
+  getFavoritedCollection: FavoriteCollection;
   getFavoritedCollections: Array<FavoriteCollection>;
   getMyAssets: Array<Asset>;
   myUser: User;
@@ -113,6 +114,10 @@ export type Query = {
 
 export type QueryGetCollectionArgs = {
   collectionSlug: Scalars['String'];
+};
+
+export type QueryGetFavoritedCollectionArgs = {
+  address: Scalars['String'];
 };
 
 export type QuerySearchCollectionsArgs = {
