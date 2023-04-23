@@ -2,7 +2,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import useGraphData from './useGraphData';
 
-interface LineGraphProps {
+export interface LineGraphProps {
   title: string;
   data: number[];
   isVolume?: boolean;
@@ -47,7 +47,7 @@ const LineGraph = ({ title, data, isVolume = false }: LineGraphProps) => {
   const Xlabel = { value: 'Hour', position: 'bottom' };
 
   return (
-    <div className="border rounded-[16px] border-dark-40 py-6 flex-1">
+    <div className="border rounded-2xl border-dark-40 py-6 flex-1">
       <span className="font-medium text-lg px-6">{title}</span>
       <div className="h-[160px] mt-6">
         <ResponsiveContainer height="100%">

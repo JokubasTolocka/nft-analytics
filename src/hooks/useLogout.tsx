@@ -5,11 +5,11 @@ import { Constants } from '../utils/constants';
 const useLogout = () => {
   const { disconnectAsync } = useDisconnect();
 
-  const handleDisconnect = async () => {
+  const handleDisconnect = async (withRefresh: boolean = true) => {
     await disconnectAsync();
     Cookies.remove(Constants.JWT_AUTH);
     Cookies.remove(Constants.IS_LOGGED_IN);
-    window.location.pathname = '/';
+    if (withRefresh) window.location.pathname = '/';
   };
 
   return handleDisconnect;

@@ -10,28 +10,36 @@ import { Constants } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/Auth/useAuth';
 import { User } from '../../../graphql/generated/types';
+import useLogout from '../../../hooks/useLogout';
 
 const useLogin = () => {
   const navigate = useNavigate();
   const { connectAsync } = useConnect();
   const { signMessageAsync } = useSignMessage();
   const { setMyUser } = useAuth();
+  const handleDisconnect = useLogout();
 
   const [checkIfUserExists] = useCheckIfUserExistsMutation();
   const [authenticateUser] = useAuthenticateMutation();
 
   const [getMyUser] = useMyUserLazyQuery();
 
-  const getWalletAddress = async () => {
-    const { account } = await connectAsync({
+  const getWalletAddress = async (): Promise<string> =>
+    await connectAsync({
       connector: new InjectedConnector()
-    });
-
-    return account;
-  };
+    })
+      .then(({ account }) => {
+        return account;
+      })
+      .catch(async () => {
+        handleDisconnect(false);
+        return await getWalletAddress();
+      });
 
   const handleAuth = async () => {
     const walletAddress = await getWalletAddress();
+
+    if (!walletAddress) return;
 
     checkIfUserExists({
       variables: { walletAddress },

@@ -12,6 +12,7 @@ const SearchBox = () => {
   };
 
   const onSubmit = () => {
+    if (searchTerm.length < 3) return;
     setSearchTerm('');
     if (inputRef.current) inputRef.current.blur();
     navigate(`/search/${searchTerm}`);
@@ -26,7 +27,7 @@ const SearchBox = () => {
         ref={inputRef}
         onChange={({ target: { value } }) => setSearchTerm(value)}
         onKeyDown={onKeyDown}></input>
-      {!!searchTerm && (
+      {searchTerm.length >= 3 && (
         <Button
           onClick={onSubmit}
           className="absolute top-0 bottom-0 my-2 text-white rounded-lg right-2 !p-2 text-sm z-10"

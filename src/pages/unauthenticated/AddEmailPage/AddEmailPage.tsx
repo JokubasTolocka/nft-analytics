@@ -34,6 +34,8 @@ const AddEmailPage = () => {
     setInputError('Invalid email');
   };
 
+  const error = skipEmailError || addEmailError;
+
   return (
     <div className="bg-dark-100 h-full w-full flex flex-col">
       <div className="flex h-full justify-center items-center">
@@ -69,6 +71,7 @@ const AddEmailPage = () => {
                   Skip
                 </Button>
               )}
+              {!!error && <span className="font-medium text-sm text-alert-100">{error.message}</span>}
             </>
           </Container>
         </div>
