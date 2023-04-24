@@ -8,7 +8,7 @@ import { AuthProvider } from './contexts/Auth/AuthProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const link = createHttpLink({
-  uri: 'http://127.0.0.1:3001/graphql',
+  uri: `${import.meta.env.SERVER_URL}/graphql`,
   credentials: 'include'
 });
 
