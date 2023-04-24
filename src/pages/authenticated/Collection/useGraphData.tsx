@@ -14,45 +14,14 @@ const useGraphData = (data: number[], title: string, isVolume?: boolean) => {
       return {
         name: iterationHour.toString(),
         [title]: value,
-        Hour: `${iterationHour}:00:00`
+        ...(isVolume ? { 'Total volume': value } : { Hour: `${iterationHour}:00:00` })
       };
     });
 
     return formattedData.reverse();
   };
 
-  const getInitialHour = (hoursAgo: number) => {
-    const currentHour = new Date().getHours();
-
-    let hourAgo = currentHour - hoursAgo;
-
-    if (hourAgo < 0) hourAgo += 24;
-    else if (hourAgo >= 24) hourAgo -= 24;
-
-    return hourAgo;
-  };
-
-  const getVolumeData = () => {
-    const dataCopy = [...data];
-
-    const initialHour = getInitialHour(dataCopy.length - 1);
-
-    const volumeData = data.map((volume, index) => {
-      let iterationHour = initialHour + index;
-
-      if (iterationHour > 24) iterationHour -= 24;
-
-      return {
-        name: iterationHour.toString(),
-        [title]: index === 0 ? 0 : volume - data[index - 1],
-        'Total volume': volume
-      };
-    });
-
-    return volumeData;
-  };
-
-  return isVolume ? getVolumeData() : getFormattedData();
+  return getFormattedData();
 };
 
 export default useGraphData;

@@ -33,9 +33,6 @@ const CollectionRow = ({ collection }: CollectionRowProps) => {
       <td>
         <SimpleLineGraph data={collection.pastVolumeArray} title="Volume" isVolume />
       </td>
-      <td>
-        <PriceMovement pastPriceArray={collection.pastVolumeArray} />
-      </td>
     </tr>
   );
 };

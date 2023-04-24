@@ -29,7 +29,6 @@ const FavoritesPage = () => {
             <th className={headerClass}>Change</th>
             <th className={headerClass}>Volume</th>
             <th className={headerClass}>Chart</th>
-            <th className={headerClass}>Change</th>
           </tr>
         </thead>
         <tbody className="">
