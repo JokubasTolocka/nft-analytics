@@ -21,7 +21,7 @@ const GraphSection = ({ address }: GraphSectionProps) => {
   return (
     <div className="flex mx-16 gap-8 mb-12 mt-3">
       <LineGraph data={floorPrices} title="Floor price" />
-      <LineGraph data={volumes} title="Volume change" isVolume />
+      <LineGraph data={volumes} title="Hourly volume" isVolume />
     </div>
   );
 };

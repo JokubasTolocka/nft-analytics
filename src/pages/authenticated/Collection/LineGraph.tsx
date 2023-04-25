@@ -1,5 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import PriceMovement from '../Home/PriceMovement';
 import useGraphData from './useGraphData';
 
 export interface LineGraphProps {
@@ -48,7 +49,10 @@ const LineGraph = ({ title, data, isVolume = false }: LineGraphProps) => {
 
   return (
     <div className="border rounded-2xl border-dark-40 py-6 flex-1">
-      <span className="font-medium text-lg px-6">{title}</span>
+      <div className="flex justify-between px-6">
+        <span className="font-medium text-lg">{title}</span>
+        {!isVolume && <PriceMovement pastPriceArray={data} />}
+      </div>
       <div className="h-[160px] mt-6">
         <ResponsiveContainer height="100%">
           <LineChart data={formattedData} margin={{ right: 30, bottom: 20 }}>
