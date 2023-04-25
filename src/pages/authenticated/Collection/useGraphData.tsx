@@ -1,4 +1,4 @@
-const useGraphData = (data: number[], title: string, isVolume?: boolean) => {
+const useGraphData = (data: number[], title: string) => {
   const getFormattedData = () => {
     const dataCopy = [...data];
     const reversedArray = dataCopy.reverse();
@@ -14,7 +14,7 @@ const useGraphData = (data: number[], title: string, isVolume?: boolean) => {
       return {
         name: iterationHour.toString(),
         [title]: value,
-        ...(isVolume ? { 'Total volume': value } : { Hour: `${iterationHour}:00:00` })
+        Hour: `${iterationHour}:00:00`
       };
     });
 

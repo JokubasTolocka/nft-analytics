@@ -42,7 +42,7 @@ export const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType
 };
 
 const LineGraph = ({ title, data, isVolume = false }: LineGraphProps) => {
-  const formattedData = useGraphData(data, title, isVolume);
+  const formattedData = useGraphData(data, title);
 
   const Xlabel = { value: 'Hour', position: 'bottom' };
 
