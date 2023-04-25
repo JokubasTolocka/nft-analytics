@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading/Loading';
@@ -8,7 +9,12 @@ import PriceMovement from './PriceMovement';
 const COLLECTION_LIMIT = 4;
 
 const FavoritedCollections = () => {
-  const { data, loading, error } = useGetFavoritedCollectionsQuery();
+  const { data, loading, error, refetch } = useGetFavoritedCollectionsQuery();
+
+  useEffect(() => {
+    // Refetch on page reload to keep data consistent
+    refetch();
+  }, []);
 
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;

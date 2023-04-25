@@ -8,14 +8,19 @@ import { useAuth } from '../../../contexts/Auth/useAuth';
 
 interface CollectionAddressProps {
   collectionAddress: string;
+  // eslint-disable-next-line no-unused-vars
+  handleRefresh: (newFavoriteState: boolean) => void;
 }
 
-const FavoriteButton = ({ collectionAddress }: CollectionAddressProps) => {
+const FavoriteButton = ({ collectionAddress, handleRefresh }: CollectionAddressProps) => {
   const { collectionSlug } = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
   const { myUser } = useAuth();
   const [markCollectionAsFavorite, { loading }] = useMarkCollectionAsFavoriteMutation({
-    onCompleted: ({ markCollectionAsFavorite }) => setIsFavorite(markCollectionAsFavorite)
+    onCompleted: ({ markCollectionAsFavorite }) => {
+      setIsFavorite(markCollectionAsFavorite);
+      handleRefresh(markCollectionAsFavorite);
+    }
   });
 
   useEffect(() => {

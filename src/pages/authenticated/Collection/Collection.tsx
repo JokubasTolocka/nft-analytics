@@ -8,6 +8,7 @@ import TextDivider from '../../../components/TextDivider';
 import FavoriteButton from './FavoriteButton';
 import { useAuth } from '../../../contexts/Auth/useAuth';
 import GraphSection from './GraphSection';
+import { useEffect, useState } from 'react';
 
 interface StatsBoxProps {
   stat: string;
@@ -24,8 +25,21 @@ const StatsBox = ({ stat, statName }: StatsBoxProps) => (
 const Collection = () => {
   const { myUser } = useAuth();
   const { collectionSlug } = useParams();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const { data, loading, error } = useGetCollectionQuery({ variables: { collectionSlug: collectionSlug || '' } });
+  const { data, loading, error, refetch } = useGetCollectionQuery({
+    variables: { collectionSlug: collectionSlug || '' }
+  });
+
+  const handleRefresh = (newFavoriteState: boolean) => {
+    setIsFavorite(newFavoriteState);
+    refetch();
+  };
+
+  useEffect(() => {
+    // Refetch on page reload to keep data consistent
+    refetch();
+  }, []);
 
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
@@ -58,7 +72,9 @@ const Collection = () => {
           {!!collection.description && <DescriptionBox description={collection.description} />}
         </div>
         <div className="flex flex-col items-end justify-between">
-          {!!collectionAddress && <FavoriteButton collectionAddress={collectionAddress} />}
+          {!!collectionAddress && (
+            <FavoriteButton collectionAddress={collectionAddress} handleRefresh={handleRefresh} />
+          )}
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
             <StatsBox stat={`${collection.floorPrice || 0} ETH`} statName="Floor price" />
@@ -66,7 +82,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      {getIsFavorite() && collectionAddress && <GraphSection address={collectionAddress} />}
+      {collectionAddress && (getIsFavorite() || isFavorite) && <GraphSection address={collectionAddress} />}
       <TextDivider title="Items" className="mx-16" />
       <AssetGrid assets={collection.assets} className="mx-16" />
     </div>

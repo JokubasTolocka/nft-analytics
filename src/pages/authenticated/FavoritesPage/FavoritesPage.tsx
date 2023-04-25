@@ -3,9 +3,15 @@ import Loading from '../../../components/Loading/Loading';
 import cx from 'classnames';
 import { useGetFavoritedCollectionsQuery } from '../../../graphql/generated/hooks';
 import CollectionRow from './CollectionRow';
+import { useEffect } from 'react';
 
 const FavoritesPage = () => {
-  const { data, loading, error } = useGetFavoritedCollectionsQuery();
+  const { data, loading, error, refetch } = useGetFavoritedCollectionsQuery();
+
+  useEffect(() => {
+    // Refetch on page reload to keep data consistent
+    refetch();
+  }, []);
 
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
@@ -31,7 +37,7 @@ const FavoritesPage = () => {
             <th className={headerClass}>Chart</th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody>
           {getFavoritedCollections.map((collection, index) => (
             <CollectionRow collection={collection} key={index} />
           ))}
