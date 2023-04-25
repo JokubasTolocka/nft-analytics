@@ -31,10 +31,10 @@ const FavoritesPage = () => {
             <th className={cx('opacity-0 cursor-default', headerClass)}>Image</th>
             <th className={headerClass}>Name</th>
             <th className={headerClass}>Floor Price</th>
-            <th className={headerClass}>Chart</th>
-            <th className={headerClass}>Change</th>
-            <th className={headerClass}>Volume</th>
-            <th className={headerClass}>Chart</th>
+            <th className={headerClass}>24h Chart</th>
+            <th className={headerClass}>24h Change</th>
+            <th className={headerClass}>Last Hour Volume</th>
+            <th className={headerClass}>24h Chart</th>
           </tr>
         </thead>
         <tbody>
