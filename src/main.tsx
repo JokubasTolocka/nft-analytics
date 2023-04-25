@@ -8,7 +8,7 @@ import { AuthProvider } from './contexts/Auth/AuthProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const link = createHttpLink({
-  uri: `${import.meta.env.VITE_SERVER_URL}graphql`,
+  uri: `${import.meta.env.VITE_SERVER_URL}/graphql`,
   credentials: 'include'
 });
 
