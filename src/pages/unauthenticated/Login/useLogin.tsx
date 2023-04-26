@@ -43,7 +43,7 @@ const useLogin = () => {
 
     checkIfUserExists({
       variables: { walletAddress },
-      onCompleted: async ({ checkIfUserExists: { walletAddress, nonce, hasSkippedEmail } }) => {
+      onCompleted: async ({ checkIfUserExists: { walletAddress, nonce, hasSkippedEmail, email } }) => {
         // // signing the received message via metamask
         const formattedMessage = `Nonce for this message: ${nonce}`;
         const signature = await signMessageAsync({ message: formattedMessage });
@@ -63,7 +63,7 @@ const useLogin = () => {
                 setMyUser(myUser as User);
 
                 // If the user has never been asked for the email, give them the option to provide
-                if (!hasSkippedEmail) return navigate('/verify');
+                if (!hasSkippedEmail && !email) return navigate('/verify');
 
                 // Refresh page to get new cookies and show home page
                 navigate(0);
