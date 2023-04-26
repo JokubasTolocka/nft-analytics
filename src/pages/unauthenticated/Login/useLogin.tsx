@@ -56,8 +56,8 @@ const useLogin = () => {
         authenticateUser({
           variables: { authenticateInput: authParams },
           onCompleted: ({ authenticate: token }) => {
-            Cookies.set(Constants.JWT_AUTH, JSON.stringify(token), { expires: 7 });
-            Cookies.set(Constants.IS_LOGGED_IN, JSON.stringify(true));
+            Cookies.set(Constants.JWT_AUTH, JSON.stringify(token), { expires: 7, sameSite: 'None' });
+            Cookies.set(Constants.IS_LOGGED_IN, JSON.stringify(true), { sameSite: 'None' });
 
             getMyUser({
               onCompleted: ({ myUser }) => {

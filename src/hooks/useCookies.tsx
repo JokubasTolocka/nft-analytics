@@ -6,7 +6,7 @@ function useCookies<T>(cookieName: string, initialValue: T) {
     const tokenJSON = Cookies.get(cookieName);
 
     if (!tokenJSON) {
-      Cookies.set(cookieName, JSON.stringify(initialValue));
+      Cookies.set(cookieName, JSON.stringify(initialValue), { sameSite: 'None' });
     }
 
     return tokenJSON ? JSON.parse(tokenJSON) : initialValue;
@@ -15,7 +15,7 @@ function useCookies<T>(cookieName: string, initialValue: T) {
   const [cookieValue, setCookieValue] = useState<T>(getCookie);
 
   const setCookie = (newValue: T) => {
-    Cookies.set(cookieName, JSON.stringify(newValue));
+    Cookies.set(cookieName, JSON.stringify(newValue), { sameSite: 'None' });
     setCookieValue(newValue);
 
     window.dispatchEvent(new Event('cookies-changed'));
