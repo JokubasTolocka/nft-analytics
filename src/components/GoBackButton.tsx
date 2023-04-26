@@ -1,8 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowLeft } from '../assets/icons/ArrowLeft.svg';
 
 const GoBackButton = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  if (location.key === 'default') return null;
 
   const onClick = () => navigate(-1);
 
