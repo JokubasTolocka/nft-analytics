@@ -21,7 +21,7 @@ const AddEmailPage = () => {
   const [addEmail, { loading: addEmailLoading, error: addEmailError }] = useAddEmailMutation({
     onCompleted: ({ addEmail }) => {
       setMyUser(addEmail as User);
-      navigateHome;
+      navigateHome();
     }
   });
 

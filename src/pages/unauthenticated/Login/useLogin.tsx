@@ -43,7 +43,7 @@ const useLogin = () => {
 
     checkIfUserExists({
       variables: { walletAddress },
-      onCompleted: async ({ checkIfUserExists: { walletAddress, nonce, hasSkippedEmail } }) => {
+      onCompleted: async ({ checkIfUserExists: { walletAddress, nonce, hasSkippedEmail, email } }) => {
         // // signing the received message via metamask
         const formattedMessage = `Nonce for this message: ${nonce}`;
         const signature = await signMessageAsync({ message: formattedMessage });
