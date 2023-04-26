@@ -31,7 +31,7 @@ const CollectionRow = ({ collection }: CollectionRowProps) => {
         {collection.pastVolumeArray[collection.pastVolumeArray.length - 1].toFixed(2)} ETH
       </td>
       <td>
-        <SimpleLineGraph data={collection.pastVolumeArray} title="Volume" isVolume />
+        <SimpleLineGraph data={collection.pastVolumeArray} title="Volume" />
       </td>
     </tr>
   );

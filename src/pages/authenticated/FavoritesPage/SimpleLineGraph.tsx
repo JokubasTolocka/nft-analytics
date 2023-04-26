@@ -2,8 +2,8 @@ import { Line, LineChart, ResponsiveContainer } from 'recharts';
 import { LineGraphProps } from '../Collection/LineGraph';
 import useGraphData from '../Collection/useGraphData';
 
-const SimpleLineGraph = ({ title, data, isVolume = false }: LineGraphProps) => {
-  const formattedData = useGraphData(data, title, isVolume);
+const SimpleLineGraph = ({ title, data }: LineGraphProps) => {
+  const formattedData = useGraphData(data, title);
 
   return (
     <div className="h-[64px] w-[120px] mt-6">
