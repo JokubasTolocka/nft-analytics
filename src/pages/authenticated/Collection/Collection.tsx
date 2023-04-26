@@ -41,18 +41,22 @@ const Collection = () => {
     refetch();
   }, []);
 
+  useEffect(() => {
+    const getIsFavorite = () => {
+      const collectionIndex = myUser?.favoritedCollections.findIndex(
+        (collectionAddress) => collectionAddress === data?.getCollection.address
+      );
+
+      if (collectionIndex === undefined) return false;
+
+      return collectionIndex > -1;
+    };
+
+    setIsFavorite(getIsFavorite());
+  }, [data]);
+
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
-
-  const getIsFavorite = () => {
-    const collectionIndex = myUser?.favoritedCollections.findIndex(
-      (collectionAddress) => collectionAddress === data?.getCollection.address
-    );
-
-    if (collectionIndex === undefined) return false;
-
-    return collectionIndex > -1;
-  };
 
   const { getCollection: collection } = data;
 
@@ -82,7 +86,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      {collectionAddress && (getIsFavorite() || isFavorite) && <GraphSection address={collectionAddress} />}
+      {collectionAddress && isFavorite && <GraphSection address={collectionAddress} />}
       <TextDivider title="Items" className="mx-16" />
       <AssetGrid assets={collection.assets} className="mx-16" />
     </div>

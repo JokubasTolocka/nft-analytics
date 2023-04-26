@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { useGetFavoritedCollectionsQuery } from '../../../graphql/generated/hooks';
 import CollectionRow from './CollectionRow';
 import { useEffect } from 'react';
+import NoCollectionsPlaceholder from '../Home/NoCollectionsPlaceholder';
 
 const FavoritesPage = () => {
   const { data, loading, error, refetch } = useGetFavoritedCollectionsQuery();
@@ -18,7 +19,15 @@ const FavoritesPage = () => {
 
   const { getFavoritedCollections } = data;
 
-  if (getFavoritedCollections.length === 0) return null;
+  if (getFavoritedCollections.length === 0)
+    return (
+      <div className="p-12 w-full flex flex-col">
+        <span className="text-[32px] font-medium">Favorites</span>
+        <div className="mt-8">
+          <NoCollectionsPlaceholder />
+        </div>
+      </div>
+    );
 
   const headerClass = 'text-left text-dark-40 font-normal';
 

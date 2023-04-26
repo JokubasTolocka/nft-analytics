@@ -21,11 +21,15 @@ const FavoritedCollections = () => {
 
   const { getFavoritedCollections } = data;
 
-  if (getFavoritedCollections.length === 0) return null;
+  if (getFavoritedCollections.length === 0)
+    return (
+      <div className="mt-8">
+        <NoCollectionsPlaceholder />
+      </div>
+    );
 
   return (
     <>
-      <span className="text-[32px] font-medium">Favorites</span>
       <div className="mt-8 flex space-x-6">
         {getFavoritedCollections.slice(0, COLLECTION_LIMIT).map((collection) => (
           <Link
