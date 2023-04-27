@@ -51,8 +51,8 @@ export type Collection = {
   volume?: Maybe<Scalars['Float']>;
 };
 
-export type FavoriteCollection = {
-  __typename: 'FavoriteCollection';
+export type FavouriteCollection = {
+  __typename: 'FavouriteCollection';
   /** Collection address */
   address: Scalars['String'];
   collectionSlug?: Maybe<Scalars['String']>;
@@ -65,7 +65,7 @@ export type FavoriteCollection = {
   pastVolumeArray: Array<Scalars['Float']>;
 };
 
-export type MarkCollectionAsFavoriteInput = {
+export type MarkCollectionAsFavouriteInput = {
   /** Collection address */
   address: Scalars['String'];
   /** Collection slug */
@@ -77,7 +77,7 @@ export type Mutation = {
   addEmail: User;
   authenticate: Scalars['String'];
   checkIfUserExists: User;
-  markCollectionAsFavorite: Scalars['Boolean'];
+  markCollectionAsFavourite: Scalars['Boolean'];
   skipEmail: Scalars['Boolean'];
   updatePriceDifference: User;
 };
@@ -94,8 +94,8 @@ export type MutationCheckIfUserExistsArgs = {
   walletAddress: Scalars['String'];
 };
 
-export type MutationMarkCollectionAsFavoriteArgs = {
-  markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput;
+export type MutationMarkCollectionAsFavouriteArgs = {
+  markCollectionAsFavouriteData: MarkCollectionAsFavouriteInput;
 };
 
 export type MutationUpdatePriceDifferenceArgs = {
@@ -105,8 +105,8 @@ export type MutationUpdatePriceDifferenceArgs = {
 export type Query = {
   __typename: 'Query';
   getCollection: Collection;
-  getFavoritedCollection: FavoriteCollection;
-  getFavoritedCollections: Array<FavoriteCollection>;
+  getFavouritedCollection: FavouriteCollection;
+  getFavouritedCollections: Array<FavouriteCollection>;
   getMyAssets: Array<Asset>;
   myUser: User;
   searchCollections: Array<ShortCollection>;
@@ -116,7 +116,7 @@ export type QueryGetCollectionArgs = {
   collectionSlug: Scalars['String'];
 };
 
-export type QueryGetFavoritedCollectionArgs = {
+export type QueryGetFavouritedCollectionArgs = {
   address: Scalars['String'];
 };
 
@@ -141,8 +141,8 @@ export type User = {
   __typename: 'User';
   /** User email */
   email?: Maybe<Scalars['String']>;
-  /** User favorited collections */
-  favoritedCollections: Array<Scalars['String']>;
+  /** User favourited collections */
+  favouritedCollections: Array<Scalars['String']>;
   /** Has user skipped the email prompt */
   hasSkippedEmail: Scalars['Boolean'];
   id: Scalars['String'];

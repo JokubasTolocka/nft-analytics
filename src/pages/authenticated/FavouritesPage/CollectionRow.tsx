@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { FavoriteCollectionFragment } from '../../../graphql/generated/operationsTypes';
+import { FavouriteCollectionFragment } from '../../../graphql/generated/operationsTypes';
 import PriceMovement from '../Home/PriceMovement';
 import SimpleLineGraph from './SimpleLineGraph';
 
 interface CollectionRowProps {
-  collection: FavoriteCollectionFragment;
+  collection: FavouriteCollectionFragment;
 }
 
 const CollectionRow = ({ collection }: CollectionRowProps) => {

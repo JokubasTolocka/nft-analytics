@@ -24,11 +24,11 @@ query searchCollections($searchSlug: String!) {
   }
 }
 
-mutation markCollectionAsFavorite($markCollectionAsFavoriteData: MarkCollectionAsFavoriteInput!) {
-  markCollectionAsFavorite(markCollectionAsFavoriteData: $markCollectionAsFavoriteData)
+mutation markCollectionAsFavourite($markCollectionAsFavouriteData: MarkCollectionAsFavouriteInput!) {
+  markCollectionAsFavourite(markCollectionAsFavouriteData: $markCollectionAsFavouriteData)
 }
 
-fragment FavoriteCollection on FavoriteCollection {
+fragment FavouriteCollection on FavouriteCollection {
   collectionSlug
   address
   name
@@ -37,14 +37,14 @@ fragment FavoriteCollection on FavoriteCollection {
   pastVolumeArray
 }
 
-query getFavoritedCollections {
-  getFavoritedCollections {
-    ...FavoriteCollection
+query getFavouritedCollections {
+  getFavouritedCollections {
+    ...FavouriteCollection
   }
 }
 
-query getFavoritedCollection($address: String!) {
-  getFavoritedCollection(address: $address) {
-    ...FavoriteCollection
+query getFavouritedCollection($address: String!) {
+  getFavouritedCollection(address: $address) {
+    ...FavouriteCollection
   }
 }

@@ -3,7 +3,7 @@ import NavBar from './components/NavBar';
 import Sidebar from './components/Sidebar/Sidebar';
 import { useAuth } from './contexts/Auth/useAuth';
 import Collection from './pages/authenticated/Collection/Collection';
-import FavoritesPage from './pages/authenticated/FavoritesPage/FavoritesPage';
+import FavouritesPage from './pages/authenticated/FavouritesPage/FavouritesPage';
 import Home from './pages/authenticated/Home/Home';
 import ProfilePage from './pages/authenticated/Profile/ProfilePage';
 import SearchPage from './pages/authenticated/SearchPage/SearchPage';
@@ -27,7 +27,7 @@ const App = () => {
           <Route path="collection/:collectionSlug" element={<Collection />} />
           <Route path="search/:searchSlug" element={<SearchPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
         </Routes>
       </div>
     </div>

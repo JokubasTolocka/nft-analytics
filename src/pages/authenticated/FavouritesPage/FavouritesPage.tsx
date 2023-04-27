@@ -1,13 +1,13 @@
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading/Loading';
 import cx from 'classnames';
-import { useGetFavoritedCollectionsQuery } from '../../../graphql/generated/hooks';
 import CollectionRow from './CollectionRow';
 import { useEffect } from 'react';
 import NoCollectionsPlaceholder from '../Home/NoCollectionsPlaceholder';
+import { useGetFavouritedCollectionsQuery } from '../../../graphql/generated/hooks';
 
-const FavoritesPage = () => {
-  const { data, loading, error, refetch } = useGetFavoritedCollectionsQuery();
+const FavouritesPage = () => {
+  const { data, loading, error, refetch } = useGetFavouritedCollectionsQuery();
 
   useEffect(() => {
     // Refetch on page reload to keep data consistent
@@ -17,12 +17,12 @@ const FavoritesPage = () => {
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
 
-  const { getFavoritedCollections } = data;
+  const { getFavouritedCollections } = data;
 
-  if (getFavoritedCollections.length === 0)
+  if (getFavouritedCollections.length === 0)
     return (
       <div className="p-12 w-full flex flex-col">
-        <span className="text-[32px] font-medium">Favorites</span>
+        <span className="text-[32px] font-medium">Favourites</span>
         <div className="mt-8">
           <NoCollectionsPlaceholder />
         </div>
@@ -33,7 +33,7 @@ const FavoritesPage = () => {
 
   return (
     <div className="p-12 w-full flex flex-col overflow-y-scroll">
-      <span className="text-[32px] font-medium">Favorites</span>
+      <span className="text-[32px] font-medium">Favourites</span>
       <table className="mt-8">
         <thead>
           <tr className="mb-2">
@@ -47,7 +47,7 @@ const FavoritesPage = () => {
           </tr>
         </thead>
         <tbody>
-          {getFavoritedCollections.map((collection, index) => (
+          {getFavouritedCollections.map((collection, index) => (
             <CollectionRow collection={collection} key={index} />
           ))}
         </tbody>
@@ -56,4 +56,4 @@ const FavoritesPage = () => {
   );
 };
 
-export default FavoritesPage;
+export default FavouritesPage;

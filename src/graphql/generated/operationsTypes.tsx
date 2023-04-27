@@ -35,14 +35,14 @@ export type SearchCollectionsQuery = {
   }>;
 };
 
-export type MarkCollectionAsFavoriteMutationVariables = Types.Exact<{
-  markCollectionAsFavoriteData: Types.MarkCollectionAsFavoriteInput;
+export type MarkCollectionAsFavouriteMutationVariables = Types.Exact<{
+  markCollectionAsFavouriteData: Types.MarkCollectionAsFavouriteInput;
 }>;
 
-export type MarkCollectionAsFavoriteMutation = { __typename: 'Mutation'; markCollectionAsFavorite: boolean };
+export type MarkCollectionAsFavouriteMutation = { __typename: 'Mutation'; markCollectionAsFavourite: boolean };
 
-export type FavoriteCollectionFragment = {
-  __typename: 'FavoriteCollection';
+export type FavouriteCollectionFragment = {
+  __typename: 'FavouriteCollection';
   collectionSlug?: string | null;
   address: string;
   name: string;
@@ -51,12 +51,12 @@ export type FavoriteCollectionFragment = {
   pastVolumeArray: Array<number>;
 };
 
-export type GetFavoritedCollectionsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type GetFavouritedCollectionsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-export type GetFavoritedCollectionsQuery = {
+export type GetFavouritedCollectionsQuery = {
   __typename: 'Query';
-  getFavoritedCollections: Array<{
-    __typename: 'FavoriteCollection';
+  getFavouritedCollections: Array<{
+    __typename: 'FavouriteCollection';
     collectionSlug?: string | null;
     address: string;
     name: string;
@@ -66,14 +66,14 @@ export type GetFavoritedCollectionsQuery = {
   }>;
 };
 
-export type GetFavoritedCollectionQueryVariables = Types.Exact<{
+export type GetFavouritedCollectionQueryVariables = Types.Exact<{
   address: Types.Scalars['String'];
 }>;
 
-export type GetFavoritedCollectionQuery = {
+export type GetFavouritedCollectionQuery = {
   __typename: 'Query';
-  getFavoritedCollection: {
-    __typename: 'FavoriteCollection';
+  getFavouritedCollection: {
+    __typename: 'FavouriteCollection';
     collectionSlug?: string | null;
     address: string;
     name: string;
@@ -89,7 +89,7 @@ export type UserFragment = {
   email?: string | null;
   hasSkippedEmail: boolean;
   priceDifference: number;
-  favoritedCollections: Array<string>;
+  favouritedCollections: Array<string>;
 };
 
 export type AuthenticateMutationVariables = Types.Exact<{
@@ -111,7 +111,7 @@ export type CheckIfUserExistsMutation = {
     email?: string | null;
     hasSkippedEmail: boolean;
     priceDifference: number;
-    favoritedCollections: Array<string>;
+    favouritedCollections: Array<string>;
   };
 };
 
@@ -125,7 +125,7 @@ export type MyUserQuery = {
     email?: string | null;
     hasSkippedEmail: boolean;
     priceDifference: number;
-    favoritedCollections: Array<string>;
+    favouritedCollections: Array<string>;
   };
 };
 
@@ -154,7 +154,7 @@ export type AddEmailMutation = {
     email?: string | null;
     hasSkippedEmail: boolean;
     priceDifference: number;
-    favoritedCollections: Array<string>;
+    favouritedCollections: Array<string>;
   };
 };
 
@@ -170,7 +170,7 @@ export type UpdatePriceDifferenceMutation = {
     email?: string | null;
     hasSkippedEmail: boolean;
     priceDifference: number;
-    favoritedCollections: Array<string>;
+    favouritedCollections: Array<string>;
   };
 };
 

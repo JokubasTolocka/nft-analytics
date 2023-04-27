@@ -1,10 +1,10 @@
-import FavoritedCollections from './FavoritedCollections';
+import FavouritedCollections from './FavouritedCollections';
 
 const Home = () => {
   return (
     <div className="p-12 w-full flex flex-col overflow-y-scroll">
-      <span className="text-[32px] font-medium">Favorites</span>
-      <FavoritedCollections />
+      <span className="text-[32px] font-medium">Favourites</span>
+      <FavouritedCollections />
     </div>
   );
 };

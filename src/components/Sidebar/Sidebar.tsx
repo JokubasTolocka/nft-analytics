@@ -21,8 +21,8 @@ const Sidebar = () => {
           <SidebarLink to="/" icon={Home}>
             Home
           </SidebarLink>
-          <SidebarLink to="/favorites" icon={Star}>
-            Favorites
+          <SidebarLink to="/favourites" icon={Star}>
+            Favourites
           </SidebarLink>
           <SidebarLink to="/profile" icon={User}>
             Profile

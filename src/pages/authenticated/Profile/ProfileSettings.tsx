@@ -91,7 +91,7 @@ const ProfileSettings = () => {
           </div>
           {!!errors.priceDifference && <span className="text-alert-100 text-sm">{errors.priceDifference.message}</span>}
           <span className="text-dark-20 text-sm">
-            We will email you if any of your favorited collections floor price moves by this amount{' '}
+            We will email you if any of your favourited collections floor price moves by this amount{' '}
           </span>
         </div>
       )}

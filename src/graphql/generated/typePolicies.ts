@@ -31,7 +31,7 @@ export type CollectionFieldPolicy = {
   supply?: FieldPolicy<any> | FieldReadFunction<any>;
   volume?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type FavoriteCollectionKeySpecifier = (
+export type FavouriteCollectionKeySpecifier = (
   | 'address'
   | 'collectionSlug'
   | 'image'
@@ -39,9 +39,9 @@ export type FavoriteCollectionKeySpecifier = (
   | 'owners'
   | 'pastFloorPriceArray'
   | 'pastVolumeArray'
-  | FavoriteCollectionKeySpecifier
+  | FavouriteCollectionKeySpecifier
 )[];
-export type FavoriteCollectionFieldPolicy = {
+export type FavouriteCollectionFieldPolicy = {
   address?: FieldPolicy<any> | FieldReadFunction<any>;
   collectionSlug?: FieldPolicy<any> | FieldReadFunction<any>;
   image?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -54,7 +54,7 @@ export type MutationKeySpecifier = (
   | 'addEmail'
   | 'authenticate'
   | 'checkIfUserExists'
-  | 'markCollectionAsFavorite'
+  | 'markCollectionAsFavourite'
   | 'skipEmail'
   | 'updatePriceDifference'
   | MutationKeySpecifier
@@ -63,14 +63,14 @@ export type MutationFieldPolicy = {
   addEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   authenticate?: FieldPolicy<any> | FieldReadFunction<any>;
   checkIfUserExists?: FieldPolicy<any> | FieldReadFunction<any>;
-  markCollectionAsFavorite?: FieldPolicy<any> | FieldReadFunction<any>;
+  markCollectionAsFavourite?: FieldPolicy<any> | FieldReadFunction<any>;
   skipEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   updatePriceDifference?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type QueryKeySpecifier = (
   | 'getCollection'
-  | 'getFavoritedCollection'
-  | 'getFavoritedCollections'
+  | 'getFavouritedCollection'
+  | 'getFavouritedCollections'
   | 'getMyAssets'
   | 'myUser'
   | 'searchCollections'
@@ -78,8 +78,8 @@ export type QueryKeySpecifier = (
 )[];
 export type QueryFieldPolicy = {
   getCollection?: FieldPolicy<any> | FieldReadFunction<any>;
-  getFavoritedCollection?: FieldPolicy<any> | FieldReadFunction<any>;
-  getFavoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+  getFavouritedCollection?: FieldPolicy<any> | FieldReadFunction<any>;
+  getFavouritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
   getMyAssets?: FieldPolicy<any> | FieldReadFunction<any>;
   myUser?: FieldPolicy<any> | FieldReadFunction<any>;
   searchCollections?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -101,7 +101,7 @@ export type ShortCollectionFieldPolicy = {
 };
 export type UserKeySpecifier = (
   | 'email'
-  | 'favoritedCollections'
+  | 'favouritedCollections'
   | 'hasSkippedEmail'
   | 'id'
   | 'nonce'
@@ -111,7 +111,7 @@ export type UserKeySpecifier = (
 )[];
 export type UserFieldPolicy = {
   email?: FieldPolicy<any> | FieldReadFunction<any>;
-  favoritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
+  favouritedCollections?: FieldPolicy<any> | FieldReadFunction<any>;
   hasSkippedEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   id?: FieldPolicy<any> | FieldReadFunction<any>;
   nonce?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -127,9 +127,9 @@ export type StrictTypedTypePolicies = {
     keyFields?: false | CollectionKeySpecifier | (() => undefined | CollectionKeySpecifier);
     fields?: CollectionFieldPolicy;
   };
-  FavoriteCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
-    keyFields?: false | FavoriteCollectionKeySpecifier | (() => undefined | FavoriteCollectionKeySpecifier);
-    fields?: FavoriteCollectionFieldPolicy;
+  FavouriteCollection?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
+    keyFields?: false | FavouriteCollectionKeySpecifier | (() => undefined | FavouriteCollectionKeySpecifier);
+    fields?: FavouriteCollectionFieldPolicy;
   };
   Mutation?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier);

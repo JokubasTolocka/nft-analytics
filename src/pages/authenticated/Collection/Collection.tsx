@@ -5,7 +5,7 @@ import DescriptionBox from './DescriptionBox';
 import ErrorMessage from '../../../components/ErrorMessage';
 import AssetGrid from '../../../components/TokenGrid';
 import TextDivider from '../../../components/TextDivider';
-import FavoriteButton from './FavoriteButton';
+import FavouriteButton from './FavouriteButton';
 import { useAuth } from '../../../contexts/Auth/useAuth';
 import GraphSection from './GraphSection';
 import { useEffect, useState } from 'react';
@@ -25,14 +25,14 @@ const StatsBox = ({ stat, statName }: StatsBoxProps) => (
 const Collection = () => {
   const { myUser } = useAuth();
   const { collectionSlug } = useParams();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   const { data, loading, error, refetch } = useGetCollectionQuery({
     variables: { collectionSlug: collectionSlug || '' }
   });
 
-  const handleRefresh = (newFavoriteState: boolean) => {
-    setIsFavorite(newFavoriteState);
+  const handleRefresh = (newFavouriteState: boolean) => {
+    setIsFavourite(newFavouriteState);
     refetch();
   };
 
@@ -42,8 +42,8 @@ const Collection = () => {
   }, []);
 
   useEffect(() => {
-    const getIsFavorite = () => {
-      const collectionIndex = myUser?.favoritedCollections.findIndex(
+    const getIsFavourite = () => {
+      const collectionIndex = myUser?.favouritedCollections.findIndex(
         (collectionAddress) => collectionAddress === data?.getCollection.address
       );
 
@@ -52,7 +52,7 @@ const Collection = () => {
       return collectionIndex > -1;
     };
 
-    setIsFavorite(getIsFavorite());
+    setIsFavourite(getIsFavourite());
   }, [data]);
 
   if (error) return <ErrorMessage error={error} />;
@@ -77,7 +77,7 @@ const Collection = () => {
         </div>
         <div className="flex flex-col items-end justify-between">
           {!!collectionAddress && (
-            <FavoriteButton collectionAddress={collectionAddress} handleRefresh={handleRefresh} />
+            <FavouriteButton collectionAddress={collectionAddress} handleRefresh={handleRefresh} />
           )}
           <div className="flex space-x-8">
             <StatsBox stat={`${collection.supply}`} statName="Items" />
@@ -86,7 +86,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      {collectionAddress && isFavorite && <GraphSection address={collectionAddress} />}
+      {collectionAddress && isFavourite && <GraphSection address={collectionAddress} />}
       <TextDivider title="Items" className="mx-16" />
       <AssetGrid assets={collection.assets} className="mx-16" />
     </div>

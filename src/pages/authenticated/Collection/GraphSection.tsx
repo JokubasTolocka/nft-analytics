@@ -1,6 +1,6 @@
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading/Loading';
-import { useGetFavoritedCollectionQuery } from '../../../graphql/generated/hooks';
+import { useGetFavouritedCollectionQuery } from '../../../graphql/generated/hooks';
 import LineGraph from './LineGraph';
 
 interface GraphSectionProps {
@@ -8,15 +8,15 @@ interface GraphSectionProps {
 }
 
 const GraphSection = ({ address }: GraphSectionProps) => {
-  const { data, loading, error } = useGetFavoritedCollectionQuery({
+  const { data, loading, error } = useGetFavouritedCollectionQuery({
     variables: { address }
   });
 
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
 
-  const floorPrices = data.getFavoritedCollection.pastFloorPriceArray;
-  const volumes = data.getFavoritedCollection.pastVolumeArray;
+  const floorPrices = data.getFavouritedCollection.pastFloorPriceArray;
+  const volumes = data.getFavouritedCollection.pastVolumeArray;
 
   return (
     <div className="flex mx-16 gap-8 mb-12 mt-3">
