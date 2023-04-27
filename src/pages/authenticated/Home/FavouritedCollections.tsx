@@ -40,7 +40,7 @@ const FavouritedCollections = () => {
             <span className="text-2xl font-medium truncate">{collection.name}</span>
             <div className="mt-3 font-medium flex justify-between mb-0.5">
               <span className="truncate">
-                {collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1]} ETH
+                {collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1].data} ETH
               </span>
               <PriceMovement pastPriceArray={collection.pastFloorPriceArray} />
             </div>

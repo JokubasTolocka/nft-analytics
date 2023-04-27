@@ -47,8 +47,8 @@ export type FavouriteCollectionFragment = {
   address: string;
   name: string;
   image?: string | null;
-  pastFloorPriceArray: Array<number>;
-  pastVolumeArray: Array<number>;
+  pastFloorPriceArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
+  pastVolumeArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
 };
 
 export type GetFavouritedCollectionsQueryVariables = Types.Exact<{ [key: string]: never }>;
@@ -61,8 +61,8 @@ export type GetFavouritedCollectionsQuery = {
     address: string;
     name: string;
     image?: string | null;
-    pastFloorPriceArray: Array<number>;
-    pastVolumeArray: Array<number>;
+    pastFloorPriceArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
+    pastVolumeArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
   }>;
 };
 
@@ -78,8 +78,8 @@ export type GetFavouritedCollectionQuery = {
     address: string;
     name: string;
     image?: string | null;
-    pastFloorPriceArray: Array<number>;
-    pastVolumeArray: Array<number>;
+    pastFloorPriceArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
+    pastVolumeArray: Array<{ __typename: 'NumericalData'; data: number; time: any }>;
   };
 };
 

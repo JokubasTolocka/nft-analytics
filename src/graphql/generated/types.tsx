@@ -10,6 +10,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTime: any;
 };
 
 export type Asset = {
@@ -61,8 +62,8 @@ export type FavouriteCollection = {
   /** Collection name */
   name: Scalars['String'];
   owners: Array<Scalars['String']>;
-  pastFloorPriceArray: Array<Scalars['Float']>;
-  pastVolumeArray: Array<Scalars['Float']>;
+  pastFloorPriceArray: Array<NumericalData>;
+  pastVolumeArray: Array<NumericalData>;
 };
 
 export type MarkCollectionAsFavouriteInput = {
@@ -100,6 +101,12 @@ export type MutationMarkCollectionAsFavouriteArgs = {
 
 export type MutationUpdatePriceDifferenceArgs = {
   priceDifference: Scalars['Float'];
+};
+
+export type NumericalData = {
+  __typename: 'NumericalData';
+  data: Scalars['Float'];
+  time: Scalars['DateTime'];
 };
 
 export type Query = {

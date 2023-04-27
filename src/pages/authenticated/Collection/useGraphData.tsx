@@ -1,24 +1,24 @@
-const useGraphData = (data: number[], title: string) => {
+import { NumericalData } from '../../../graphql/generated/types';
+
+const useGraphData = (data: NumericalData[], title: string) => {
   const getFormattedData = () => {
     const dataCopy = [...data];
-    const reversedArray = dataCopy.reverse();
 
-    const currentHour = new Date().getHours();
+    const formattedData = dataCopy.map((value) => {
+      const timeOfObtain = new Date(Date.parse(value.time));
 
-    const formattedData = reversedArray.map((value, index) => {
-      let iterationHour = currentHour - index;
-
-      // If goes back over
-      if (iterationHour < 0) iterationHour += 24;
+      const hour = timeOfObtain.getHours();
+      const minute = timeOfObtain.getMinutes();
+      const second = timeOfObtain.getSeconds();
 
       return {
-        name: iterationHour.toString(),
-        [title]: value,
-        Hour: `${iterationHour}:00:00`
+        name: hour,
+        [title]: value.data,
+        Hour: `${hour}:${minute}:${second}`
       };
     });
 
-    return formattedData.reverse();
+    return formattedData;
   };
 
   return getFormattedData();

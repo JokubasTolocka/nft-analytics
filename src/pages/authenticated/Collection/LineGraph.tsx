@@ -1,11 +1,12 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import { NumericalData } from '../../../graphql/generated/types';
 import PriceMovement from '../Home/PriceMovement';
 import useGraphData from './useGraphData';
 
 export interface LineGraphProps {
   title: string;
-  data: number[];
+  data: NumericalData[];
   isVolume?: boolean;
 }
 

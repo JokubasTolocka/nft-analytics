@@ -1,16 +1,17 @@
 import { ReactComponent as ArrowDifference } from '../../../assets/icons/ArrowDifference.svg';
 import cx from 'classnames';
+import { NumericalData } from '../../../graphql/generated/types';
 
 interface PriceMovementProps {
-  pastPriceArray: number[];
+  pastPriceArray: NumericalData[];
 }
 
 const PriceMovement = ({ pastPriceArray }: PriceMovementProps) => {
   const getPriceMovement = () => {
     if (pastPriceArray.length === 1) return 0;
 
-    const latestPrice = pastPriceArray[pastPriceArray.length - 1];
-    const oldestPrice = pastPriceArray[0];
+    const latestPrice = pastPriceArray[pastPriceArray.length - 1].data;
+    const oldestPrice = pastPriceArray[0].data;
 
     const difference = ((latestPrice - oldestPrice) / oldestPrice) * 100;
 

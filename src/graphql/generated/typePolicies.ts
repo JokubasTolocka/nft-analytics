@@ -67,6 +67,11 @@ export type MutationFieldPolicy = {
   skipEmail?: FieldPolicy<any> | FieldReadFunction<any>;
   updatePriceDifference?: FieldPolicy<any> | FieldReadFunction<any>;
 };
+export type NumericalDataKeySpecifier = ('data' | 'time' | NumericalDataKeySpecifier)[];
+export type NumericalDataFieldPolicy = {
+  data?: FieldPolicy<any> | FieldReadFunction<any>;
+  time?: FieldPolicy<any> | FieldReadFunction<any>;
+};
 export type QueryKeySpecifier = (
   | 'getCollection'
   | 'getFavouritedCollection'
@@ -134,6 +139,10 @@ export type StrictTypedTypePolicies = {
   Mutation?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | MutationKeySpecifier | (() => undefined | MutationKeySpecifier);
     fields?: MutationFieldPolicy;
+  };
+  NumericalData?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
+    keyFields?: false | NumericalDataKeySpecifier | (() => undefined | NumericalDataKeySpecifier);
+    fields?: NumericalDataFieldPolicy;
   };
   Query?: Omit<TypePolicy, 'fields' | 'keyFields'> & {
     keyFields?: false | QueryKeySpecifier | (() => undefined | QueryKeySpecifier);

@@ -9,8 +9,14 @@ export const FavouriteCollectionFragmentDoc = gql`
     address
     name
     image
-    pastFloorPriceArray
-    pastVolumeArray
+    pastFloorPriceArray {
+      data
+      time
+    }
+    pastVolumeArray {
+      data
+      time
+    }
   }
 `;
 export const UserFragmentDoc = gql`

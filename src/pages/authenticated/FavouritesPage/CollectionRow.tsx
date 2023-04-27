@@ -19,7 +19,7 @@ const CollectionRow = ({ collection }: CollectionRowProps) => {
       </td>
       <td className="text-xl font-medium truncate">{collection.name}</td>
       <td className="text-xl font-medium">
-        {collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1].toFixed(2)} ETH
+        {collection.pastFloorPriceArray[collection.pastFloorPriceArray.length - 1].data.toFixed(2)} ETH
       </td>
       <td>
         <SimpleLineGraph data={collection.pastFloorPriceArray} title="Floor price" />
@@ -28,7 +28,7 @@ const CollectionRow = ({ collection }: CollectionRowProps) => {
         <PriceMovement pastPriceArray={collection.pastFloorPriceArray} />
       </td>
       <td className="text-xl font-medium">
-        {collection.pastVolumeArray[collection.pastVolumeArray.length - 1].toFixed(2)} ETH
+        {collection.pastVolumeArray[collection.pastVolumeArray.length - 1].data.toFixed(2)} ETH
       </td>
       <td>
         <SimpleLineGraph data={collection.pastVolumeArray} title="Volume" />

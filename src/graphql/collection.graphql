@@ -33,8 +33,14 @@ fragment FavouriteCollection on FavouriteCollection {
   address
   name
   image
-  pastFloorPriceArray
-  pastVolumeArray
+  pastFloorPriceArray {
+    data
+    time
+  }
+  pastVolumeArray {
+    data
+    time
+  }
 }
 
 query getFavouritedCollections {
