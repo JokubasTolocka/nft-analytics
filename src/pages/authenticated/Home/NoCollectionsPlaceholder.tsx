@@ -3,6 +3,7 @@ const NoCollectionsPlaceholder = () => (
     <span className="text-dark-40 text-center">
       Favourite more collections <br /> to see them appear here
     </span>
+    <span className="text-center mt-2">Use search or profile view to find collections</span>
   </div>
 );
 

@@ -22,7 +22,7 @@ const SearchBox = () => {
     <div className="relative">
       <input
         className="rounded-2xl bg-dark-100 placeholder:text-dark-60 py-3 px-5 border border-dark-40 text-white w-[260px] pr-20"
-        placeholder="Search"
+        placeholder="Search NFT Collections"
         value={searchTerm}
         ref={inputRef}
         onChange={({ target: { value } }) => setSearchTerm(value)}
