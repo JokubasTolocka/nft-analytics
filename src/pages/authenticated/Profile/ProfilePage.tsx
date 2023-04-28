@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading/Loading';
 import TextDivider from '../../../components/TextDivider';
@@ -7,12 +6,7 @@ import { useGetMyAssetsQuery } from '../../../graphql/generated/hooks';
 import ProfileSettings from './ProfileSettings';
 
 const ProfilePage = () => {
-  const { data, loading, error, refetch } = useGetMyAssetsQuery();
-
-  useEffect(() => {
-    // Refetch on page reload to keep data consistent
-    refetch();
-  }, []);
+  const { data, loading, error } = useGetMyAssetsQuery();
 
   if (error) return <ErrorMessage error={error} />;
   if (loading || !data) return <Loading />;
