@@ -13,9 +13,7 @@ To install all packages run the command below
 
 ## 2. Setting the environment variables
 
-For this project to run, it has to communicate with the server. By default, the address should start as http://127.0.0.1 however the port should match whatever port the server is running on.
-
-<code>.env.example</code> file is provided to see the syntax that the <code>.env</code> file should follow
+<code>.env.example</code> file is provided to see the variables that should be copied into <code>.env</code> file. This file needs to be created in the root directory.
 
 ## 3. Run the project
 
